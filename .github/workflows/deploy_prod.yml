@@ -1,0 +1,27 @@
+name: Deploy to Production Environment
+
+on:
+  push:
+    branches:
+      - prod  # Triggers workflow only when pushing to the prod branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js (for Firebase Functions if applicable)
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+
+    - name: Deploy to Firebase (Production Environment)
+      run: firebase deploy --only hosting:prod
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
