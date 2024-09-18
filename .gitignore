@@ -1,0 +1,77 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+*.stackdump
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.opendb.meta
+*.VC.db.meta
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+
+# Firebase Service Account Keys
+serviceAccountKey.json
+
+# Unity specific folders
+Assets/StreamingAssets/*
+!Assets/StreamingAssets/.gitkeep
+# Ignore the EditorUserSettings file, which can contain personal info
+ProjectSettings/EditorUserSettings.asset
+
+# TextMesh Pro files (Unity add-on for better text rendering)
+# These should only be ignored if you don't want to store them in version control
+Assets/TextMesh Pro/
+
+# Visual Studio
+.vscode/
+.vscode/*
+*.csproj
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+# ASP.NET Scaffolding
+.scaffolding
+
+# Ignore build outputs
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.app
+*.log
+*.swp
+*.pid
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore any crash dumps
+*.stackdump
+
+# IDE-specific settings
+.idea/
+*.iml
+*.iws
+
+# Unity Asset Store tools
+[Uu]nity[Oo]pener/
