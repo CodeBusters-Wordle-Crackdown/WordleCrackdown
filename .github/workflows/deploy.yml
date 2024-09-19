@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - dev
+      - test
 
 jobs:
   # Deploy to Development Environment
@@ -14,37 +15,45 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install # Replace with your dependency manager
+      - name: Install dependencies
+        run: npm install # Replace with your dependency manager
 
-    - name: Build project
-      run: npm run build # Replace with your build command
+      - name: Build project
+        run: npm run build # Replace with your build command
 
-    - name: Deploy to Development
-      run: echo "Deploying to Development Environment"
-      # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+      - name: Deploy to Development
+        run: echo "Deploying to Development Environment"
+        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+
+      - name: Set environment URL
+        run: echo "Development URL: https://dev.example.com"
+        environment_url: https://dev.example.com
 
   # Deploy to Testing Environment
   deploy-test:
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/test'
     runs-on: ubuntu-latest
     environment: test
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install # Replace with your dependency manager
+      - name: Install dependencies
+        run: npm install # Replace with your dependency manager
 
-    - name: Build project
-      run: npm run build # Replace with your build command
+      - name: Build project
+        run: npm run build # Replace with your build command
 
-    - name: Deploy to Testing
-      run: echo "Deploying to Testing Environment"
-      # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+      - name: Deploy to Testing
+        run: echo "Deploying to Testing Environment"
+        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+
+      - name: Set environment URL
+        run: echo "Testing URL: https://test.example.com"
+        environment_url: https://test.example.com
 
   # Deploy to Production Environment
   deploy-prod:
@@ -52,15 +61,20 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install # Replace with your dependency manager
+      - name: Install dependencies
+        run: npm install # Replace with your dependency manager
 
-    - name: Build project
-      run: npm run build # Replace with your build command
+      - name: Build project
+        run: npm run build # Replace with your build command
 
-    - name: Deploy to Production
-      run: echo "Deploying to Production Environment"
-      # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+      - name: Deploy to Production
+        run: echo "Deploying to Production Environment"
+        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+
+      - name: Set environment URL
+        run: echo "Production URL: https://www.example.com"
+        environment_url: https://www.example.com
+
