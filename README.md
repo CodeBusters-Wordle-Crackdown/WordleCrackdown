@@ -9,6 +9,7 @@ the standard practices of environment isolation and any Developer with access
 and permissions to this repository must adhere to this standard practice:
 
 1. Main, Test, and Dev. are root branches.
-2. Dev. Branch 
+2. Dev. Branch
+3. Dev. main menu (coa: 24sep24)
 
 
