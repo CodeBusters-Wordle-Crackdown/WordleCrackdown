@@ -1,1 +1,2 @@
 prompt1 = "Hello World"
+build = test
