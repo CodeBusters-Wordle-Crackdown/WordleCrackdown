@@ -16,6 +16,7 @@ public class Board : MonoBehaviour
     };
 
     private Row[] rows;
+    private CS_Letters[] letters;
 
     private string[] validWords;
     private string[] solutionWords;
@@ -24,12 +25,18 @@ public class Board : MonoBehaviour
     private int rowIndex;
     private int columnIndex;
      
-    [Header("States")]
-    public Tile.State emptyState;
-    public Tile.State occupiedState;
-    public Tile.State correctState;
-    public Tile.State wrongSpotState;
-    public Tile.State incorrectState;
+    [Header("Tile States")]
+    public Tile.State emptyTileState;
+    public Tile.State occupiedTileState;
+    public Tile.State correctTileState;
+    public Tile.State wrongSpotTileState;
+    public Tile.State incorrectTileState;
+
+    [Header("Letter States")]
+    public CS_Letters.LetterState emptyLetterState;
+    public CS_Letters.LetterState correctLetterState;
+    public CS_Letters.LetterState wrongSpotLetterState;
+    public CS_Letters.LetterState incorrectLetterState;
 
     [Header("UI")]
     public GameObject invalidWordText;
@@ -39,6 +46,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         rows = GetComponentsInChildren<Row>();
+        letters = GameObject.Find("Letters").GetComponentsInChildren<CS_Letters>();
         LoadData();
         SetRandomWord();
     }
@@ -53,7 +61,7 @@ public class Board : MonoBehaviour
         {
             columnIndex = Mathf.Max(columnIndex - 1, 0);
             currentRow.tiles[columnIndex].SetLetter('\0');
-            currentRow.tiles[columnIndex].SetState(emptyState);
+            currentRow.tiles[columnIndex].SetState(emptyTileState);
             invalidWordText.SetActive(false);
         }
         // if last column is filled
@@ -94,11 +102,14 @@ public class Board : MonoBehaviour
 
     private void SubmitRow(Row row)
     {
+        // If word isn't valid, then don't bother checking or submitting
         if (!IsValidWord(row.word))
         {
             invalidWordText.SetActive(true);
             return;
         }
+
+        // Solution word that gets modified as letters are guessed in order to avoid duplicates
         string remaining = word;
 
         for(int i = 0; i < row.tiles.Length; i++)
@@ -108,14 +119,21 @@ public class Board : MonoBehaviour
             // tile has correct letter
             if(tile.tileChar == word[i])
             {
-                tile.SetState(correctState);
+                // Set tile on gameboard to correct state
+                tile.SetState(correctTileState);
+
+                // modify and remove the correct letter from the solution word
                 remaining = remaining.Remove(i, 1);
                 remaining = remaining.Insert(i, " ");
+
+                // Set letter on lower keyboard to correct state
+                LetterToState(tile.tileChar, correctLetterState);
             }            
             // solution word does not contain tile's letter at all
             else if(!word.Contains(tile.tileChar))
             {
-                tile.SetState(incorrectState);
+                tile.SetState(incorrectTileState);
+                LetterToState(tile.tileChar, incorrectLetterState);
             }
         }
 
@@ -125,22 +143,24 @@ public class Board : MonoBehaviour
         {
             Tile tile = row.tiles[i];
 
-            if (tile.state != correctState && tile.state != incorrectState)
+            if (tile.state != correctTileState && tile.state != incorrectTileState)
             {
                 // if remaining has the character but it is wrong spot
                 if (remaining.Contains(tile.tileChar))
                 {
-                    tile.SetState(wrongSpotState);
+                    tile.SetState(wrongSpotTileState);
 
                     // find correct index of letter and replace with space in remaining
                     int index = remaining.IndexOf(tile.tileChar);
                     remaining = remaining.Remove(index, 1);
                     remaining = remaining.Insert(index, " ");
+
+                    LetterToState(tile.tileChar, wrongSpotLetterState);
                 }
                 // if remaining does not have the character anymore
                 else
                 {
-                    tile.SetState(incorrectState);
+                    tile.SetState(incorrectTileState);
                 }
             }
         }
@@ -174,7 +194,7 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < row.tiles.Length; i++)
         {
-            if (row.tiles[i].state != correctState) 
+            if (row.tiles[i].state != correctTileState) 
             { 
                 return false;
             }
@@ -196,11 +216,26 @@ public class Board : MonoBehaviour
             for(int tile = 0; tile < rows[row].tiles.Length; tile++)
             {
                 rows[row].tiles[tile].SetLetter('\0');
-                rows[row].tiles[tile].SetState(emptyState);
+                rows[row].tiles[tile].SetState(emptyTileState);
             }
         }
         rowIndex = 0;
         columnIndex = 0;
+    }
+
+    // Sets a specific character on the lower keyboard to a specific state
+    private void LetterToState(char targetChar, CS_Letters.LetterState targetLetterState)
+    {
+        foreach (CS_Letters letter in letters)
+        {
+            Debug.Log(letter.letter + " - " + targetChar);
+            if (letter.letter == targetChar)
+            {
+                letter.SetState(targetLetterState);
+                Debug.Log("found: " + letter.letter);
+                break;
+            }
+        }
     }
 
     private void OnEnable()
