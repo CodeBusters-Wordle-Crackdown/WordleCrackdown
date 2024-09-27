@@ -1,7 +1,7 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
 
-https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html
+[https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html](https://cehinds.github.io/wordcrackdownTest/)
 
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
