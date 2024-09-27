@@ -105,6 +105,7 @@ public class Board : MonoBehaviour
         // If word isn't valid, then don't bother checking or submitting
         if (!IsValidWord(row.word))
         {
+            invalidWordText.transform.position = new Vector2(invalidWordText.transform.position.x, row.transform.position.y);
             invalidWordText.SetActive(true);
             return;
         }
