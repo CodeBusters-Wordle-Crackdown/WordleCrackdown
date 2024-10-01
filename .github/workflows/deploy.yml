@@ -1,80 +1,45 @@
-name: Deploy Workflow
+name: Deploy to Firebase Hosting on PR Merge
 
-# Trigger workflow on push to specific branches (main and dev)
 on:
   push:
     branches:
-      - main
-      - dev
-      - test
+      - root-dev
+      - root-test
+      - root-main
 
 jobs:
-  # Deploy to Development Environment
-  deploy-dev:
-    if: github.ref == 'refs/heads/dev'
+  build_and_deploy:
     runs-on: ubuntu-latest
-    environment: dev
+    strategy:
+      matrix:
+        environment: [dev, test, prod]
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository content
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install # Replace with your dependency manager
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
 
-      - name: Build project
-        run: npm run build # Replace with your build command
+      - name: Set up Firebase project environment variables
+        run: |
+          if [[ "${{ matrix.environment }}" == "dev" ]]; then
+            echo "FIREBASE_SITE=public-dev" >> $GITHUB_ENV
+            echo "FIREBASE_PROJECT_ID=$FIREBASE_DEV_PROJECT_ID" >> $GITHUB_ENV
+          elif [[ "${{ matrix.environment }}" == "test" ]]; then
+            echo "FIREBASE_SITE=public-test" >> $GITHUB_ENV
+            echo "FIREBASE_PROJECT_ID=$FIREBASE_TEST_PROJECT_ID" >> $GITHUB_ENV
+          elif [[ "${{ matrix.environment }}" == "prod" ]]; then
+            echo "FIREBASE_SITE=public-prod" >> $GITHUB_ENV
+            echo "FIREBASE_PROJECT_ID=$FIREBASE_PROD_PROJECT_ID" >> $GITHUB_ENV
+          fi
 
-      - name: Deploy to Development
-        run: echo "Deploying to Development Environment"
-        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
+      - name: Run build.sh script
+        run: |
+          chmod +x ./build.sh  # Make sure build.sh is executable
+          ./build.sh  # Run the build script
 
-      - name: Set environment URL
-        run: echo "Development URL: https://dev.example.com"
-        environment_url: https://dev.example.com
-
-  # Deploy to Testing Environment
-  deploy-test:
-    if: github.ref == 'refs/heads/test'
-    runs-on: ubuntu-latest
-    environment: test
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install # Replace with your dependency manager
-
-      - name: Build project
-        run: npm run build # Replace with your build command
-
-      - name: Deploy to Testing
-        run: echo "Deploying to Testing Environment"
-        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
-
-      - name: Set environment URL
-        run: echo "Testing URL: https://test.example.com"
-        environment_url: https://test.example.com
-
-  # Deploy to Production Environment
-  deploy-prod:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment: prod
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install # Replace with your dependency manager
-
-      - name: Build project
-        run: npm run build # Replace with your build command
-
-      - name: Deploy to Production
-        run: echo "Deploying to Production Environment"
-        # Insert actual deployment commands here (e.g., Firebase, AWS, etc.)
-
-      - name: Set environment URL
-        run: echo "Production URL: https://www.example.com"
-        environment_url: https://www.example.com
-
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting:${{ env.FIREBASE_SITE }} --project ${{ env.FIREBASE_PROJECT_ID }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
