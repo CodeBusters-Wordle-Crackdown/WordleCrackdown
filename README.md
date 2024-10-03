@@ -2,6 +2,7 @@
 Fierce wordle game play in a fresh approach
 
 https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
+*Unity version 2022.3.45f1*
 
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
@@ -19,6 +20,8 @@ https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
 4. Choose a local directory on your machine where the repository will be cloned.
 5. Click **Clone**.
 6. Wait for Visual Studio to complete the cloning process. The Unity project files will now be available on your local machine.
+7. Open UnityHub and Click Add
+8. In the dropdown menu, select add new project from disk, then select the folder you just cloned
 
 
 ## Part 2: Creating a New Branch from `dev`
