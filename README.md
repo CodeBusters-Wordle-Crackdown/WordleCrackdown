@@ -1,7 +1,7 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
 
-https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
+[Word Crackdown Demo (v0.00001prototype)](https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html)
 
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
