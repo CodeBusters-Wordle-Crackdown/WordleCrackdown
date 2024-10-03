@@ -18,13 +18,19 @@ public class Board : MonoBehaviour
     private Row[] rows;
     private CS_Letters[] letters;
 
+    public int row_count;
+    public int word_size;
+
     private string[] validWords;
     private string[] solutionWords;
     private string word;
 
     private int rowIndex;
     private int columnIndex;
-     
+
+    [Header("Prefabs")]
+    public GameObject tilePrefab;
+
     [Header("Tile States")]
     public Tile.State emptyTileState;
     public Tile.State occupiedTileState;
@@ -45,7 +51,27 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
+        //build dynamic gameboard
+        GameObject rowPrefab = GetComponentInChildren<Row>().gameObject;
+
+        for (int i = 0; i < word_size - 1; i++)
+        {
+            Instantiate(tilePrefab, parent: rowPrefab.transform);
+        }
+
+        for (int i = 0; i < row_count - 1; i++)
+        {
+            Instantiate(rowPrefab, parent: gameObject.transform);
+        }
+
         rows = GetComponentsInChildren<Row>();
+
+        //Tell rows they may initialize their tile size
+        foreach (Row row in rows)
+        {
+            row.InitializeTiles();
+        }
+        
         letters = GameObject.Find("Letters").GetComponentsInChildren<CS_Letters>();
         LoadData();
         SetRandomWord();
@@ -65,7 +91,7 @@ public class Board : MonoBehaviour
             invalidWordText.SetActive(false);
         }
         // if last column is filled
-        else if (columnIndex >= currentRow.tiles.Length)
+        else if (columnIndex >= currentRow.tiles.Length && !invalidWordText.activeInHierarchy)
         {
             SubmitRow(currentRow);
         }
@@ -87,11 +113,39 @@ public class Board : MonoBehaviour
 
     private void LoadData()
     {
-        TextAsset textFile = Resources.Load("official_wordle_all") as TextAsset;
-        validWords = textFile.text.Split('\n');
+        TextAsset textFile;
 
-        textFile = Resources.Load("official_wordle_common") as TextAsset;
-        solutionWords = textFile.text.Split('\n');
+        switch (word_size)
+        {
+            case 3:
+                textFile = Resources.Load("three_word_list") as TextAsset;
+                validWords = textFile.text.Split('\n');
+                solutionWords = textFile.text.Split('\n');
+                break;
+            case 4:
+                textFile = Resources.Load("four_word_list") as TextAsset;
+                validWords = textFile.text.Split('\n');
+                solutionWords = textFile.text.Split('\n');
+                break;
+            case 5:
+                textFile = Resources.Load("official_wordle_all") as TextAsset;
+                validWords = textFile.text.Split('\n');
+
+                textFile = Resources.Load("official_wordle_common") as TextAsset;
+                solutionWords = textFile.text.Split('\n');
+                break;
+            case 6:
+                textFile = Resources.Load("six_word_list") as TextAsset;
+                validWords = textFile.text.Split('\n');
+                solutionWords = textFile.text.Split('\n');
+                break;
+            case 7:
+                textFile = Resources.Load("seven_word_list") as TextAsset;
+                validWords = textFile.text.Split('\n');
+                solutionWords = textFile.text.Split('\n');
+                break;
+        }
+        
     }
 
     private void SetRandomWord()
@@ -183,8 +237,10 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < validWords.Length; i++)
         {
-            if (validWords[i] == guess)
+            for (int j = 0; j < guess.Length; j++)
             {
+                if (guess[j] != validWords[i][j])
+                    continue;
                 return true;
             }
         }
@@ -229,11 +285,9 @@ public class Board : MonoBehaviour
     {
         foreach (CS_Letters letter in letters)
         {
-            Debug.Log(letter.letter + " - " + targetChar);
             if (letter.letter == targetChar)
             {
                 letter.SetState(targetLetterState);
-                Debug.Log("found: " + letter.letter);
                 break;
             }
         }
