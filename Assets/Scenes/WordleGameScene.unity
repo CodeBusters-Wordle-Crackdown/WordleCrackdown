@@ -1683,6 +1683,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8992138735846156803, guid: 1f9630f9afc59c24c8d121423695fa63, type: 3}
   m_PrefabInstance: {fileID: 596000374}
   m_PrefabAsset: {fileID: 0}
+
 --- !u!1001 &652284271
 PrefabInstance:
   m_ObjectHideFlags: 0
