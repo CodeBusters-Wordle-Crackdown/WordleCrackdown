@@ -19,5 +19,7 @@ This ensures you make the next step inside the folder
 
 For this step is crucial you download the lastes version or a Long Term Service version of Node.js
 
-## 4 Step: Run 
+## 4 Step: Finally run "npm run dev"
+
+This will give you a localhost address where the website will be appering
 
