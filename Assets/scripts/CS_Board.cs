@@ -156,7 +156,6 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < solutionWords.Length; i++)
             solutionWords[i] = solutionWords[i].Trim();
->>>>>>> Stashed changes
     }
 
     private void SetRandomWord()
@@ -262,10 +261,8 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < validWords.Length; i++)
         {
-            for (int j = 0; j < guess.Length; j++)
+            if (guess == validWords[i])
             {
-                if (guess[j] != validWords[i][j])
-                    continue;
                 return true;
             }
         }
