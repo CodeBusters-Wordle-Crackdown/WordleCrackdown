@@ -1,102 +1,81 @@
-#textblock {
-  background-color: #210002;
-  height: 100vh;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
-#textblock-container {
-  width: 50%;
-  margin: 0 auto;
-  padding-top: 70px;
+html {
+  font-family: "Montserrat", sans-serif;
 }
 
-#textblock-title {
-  color: #ffaf1b;
-  font-size: 35px;
-  font-weight: 600;
-  font-family: "Helvetica Neue";
+body {
+  background: white;
+  padding: 3 16px;
 }
 
-#textblock-content {
-  color: #ffaf1b;
-  font-size: 20px;
+header {
+  background-color: white;
+  margin: 0;
+  padding: 0px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-#textblock-footer {
-  color: #ffaf1b;
-  font-size: 15px;
-  font-weight: 400;
-  position: fixed;
+ul {
+  background-color: rgb(110, 3, 3);
   width: 100%;
-  bottom: 0px;
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+li {
+  list-style: none;
+  padding: 0 10px;
+  font-size: 25px;
+  font-family: "McLaren", sans-serif;
+}
+
+footer {
   text-align: center;
-  margin-bottom: 20px;
-
-}
-
-#textblock-devsense {
-  text-decoration: none;
-  color: #ffaf1b;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.animation,
-.animation_lp {
-  height: 1000px;
-}
-
-.animation {
-  display: block;
-  position: relative;
-  z-index: 10;
-}
-
-.animation_lp {
-  background-position: bottom center;
-  background-size: auto 1038px;
-  background-repeat: repeat-x;
+  bottom: 0;
   width: 100%;
-  position: absolute;
+  height: 2.5rem;
 }
 
-.animation_lp {
-  position: fixed;
+
+#msgOnTime {
+  background-color: #000000;
+  text-align: center;
+  font-family: "McLaren", sans-serif;
+  text-size-adjust: -30px;
 }
+
+#footer {
+  background-color: #787c7f;
+}
+
+#Layer2 {
+  background-color: #000000;
+}
+
+.mclaren-regular {
+  font-family: "McLaren", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.animation_lp {
+  height: 500px;
+}
+
+.Par {
+  background-color: #000000;
+}
+
+
 
 #artback {
-  background-image: url(./images/background.png);
-}
-
-#mountain {
-  background-image: url(./images/mountains.png);
-}
-
-#logoland {
-  background-image: url(./images/logo_land.png);
-}
-
-#jungle1 {
-  background-image: url(./images/jungle1.png);
-}
-
-#jungle2 {
-  background-image: url(./images/jungle2.png);
-}
-
-#jungle3 {
-  background-image: url(./images/jungle3.png);
-}
-
-#jungle4 {
-  background-image: url(./images/jungle4.png);
-}
-
-#jungle5 {
-  background-image: url(./images/jungle5.png);
-}
-
-#manonmountain {
-  background-image: url(./images/man_on_mountain.png);
+  background-image: url(./images/wordleAnimation.gif);
 }

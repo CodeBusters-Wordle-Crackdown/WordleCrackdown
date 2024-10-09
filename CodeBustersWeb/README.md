@@ -19,7 +19,11 @@ This ensures you make the next step inside the folder
 
 For this step is crucial you download the lastes version or a Long Term Service version of Node.js
 
-## 4 Step: Finally run "npm run dev"
+## 4 Step: Install Node.js and run "npm i @react-spring/parallax"
+
+This module provides a physics based spring like parallax animation.
+
+## N Step: Finally run "npm run dev"
 
 This will give you a localhost address where the website will be appering
 
