@@ -3,11 +3,12 @@ name: Deploy to Firebase Dev
 on:
   push:
     branches:
-      - dev-root
+      - dev-root  # Trigger on pushes to dev-root branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: dev  # Specify the GitHub environment where secrets are stored
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,5 +23,5 @@ jobs:
 
       - name: Deploy to Firebase Dev
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}  # Reference the environment secret
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # Reference the secret as `secrets.FIREBASE_TOKEN`
         run: firebase deploy --only hosting:dev
