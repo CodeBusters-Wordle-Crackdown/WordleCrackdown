@@ -1,7 +1,9 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
 
-https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html
+
+https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
+*Unity version 2022.3.45f1*
 
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
@@ -19,6 +21,9 @@ https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html
 4. Choose a local directory on your machine where the repository will be cloned.
 5. Click **Clone**.
 6. Wait for Visual Studio to complete the cloning process. The Unity project files will now be available on your local machine.
+7. Open UnityHub and Click Add
+8. In the dropdown menu, select add new project from disk, then select the folder you just cloned
+
 
 
 ## Part 2: Creating a New Branch from `dev`
@@ -184,7 +189,8 @@ Ensure you follow this process to ensure the correct Unity files and WebGL build
 ## Part 6: Verifying and Merging the Branch with Other Branches
 
 ### Step 1: Check the New Branch on GitHub
-1. Go to GitHub and check that the new branch you created (e.g., `feature/webgl-build`) exists and that all the necessary files have been uploaded. 
+
+1. Go to GitHub and check that the new branch you created (e.g., `feature/webgl-build`) exists and that all the necessary files have been uploaded.
 2. Ensure that the WebGL build folder, `Assets`, `Packages`, and other files have been uploaded correctly.
 
 ### Step 2: Create a Pull Request (PR)
@@ -221,6 +227,7 @@ To get access to the build folder, you need to convert to webGL (if you aren't a
     
    ![image](https://github.com/user-attachments/assets/13d5bf67-0596-432d-abf2-984446097bc2)
     
+
 ## Summary
 This guide covers:
 1. Opening Visual Studio and creating a Unity project.
@@ -229,7 +236,9 @@ This guide covers:
 4. Building WebGL in Unity.
 5. Committing and pushing changes to GitHub.
 6. Verifying branch contents and merging branches.
+
 7. Extracting and Rebuilding Unity Project
+
 
 Ensure these steps are followed carefully to maintain consistent workflows and avoid missing files.
 

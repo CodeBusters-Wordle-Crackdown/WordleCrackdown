@@ -19,15 +19,10 @@ public class Row : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void InitializeTiles()
     {
         tiles = GetComponentsInChildren<Tile>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
