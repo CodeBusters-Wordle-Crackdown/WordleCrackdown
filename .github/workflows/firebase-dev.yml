@@ -1,27 +1,28 @@
+
 name: Deploy to Firebase Dev
 
 on:
   push:
     branches:
-      - dev-root  # Trigger on pushes to dev-root branch
+      - dev-root
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: dev  # Specify the GitHub environment where secrets are stored
+    environment: dev  # Reference the GitHub environment for dev
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js  # Update Node.js version here
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'  # Use a compatible version like 18.x or 20.x
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Deploy to Firebase Dev
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # Reference the secret as `secrets.FIREBASE_TOKEN`
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}  # Reference the environment secret
         run: firebase deploy --only hosting:dev
