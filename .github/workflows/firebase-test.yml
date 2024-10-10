@@ -4,12 +4,12 @@ name: Deploy to Firebase Test
 on:
   push:
     branches:
-      - test-root  # Trigger on pushes to test-root branch
+      - test-root  # Trigger on push to the test-root branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: test  # Specify the GitHub environment for test
+    environment: test  # Reference the GitHub environment for test-root
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -17,12 +17,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'  # Use Node.js 18.x for Firebase CLI compatibility
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Deploy to Firebase Test
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Reference the secret for test environment
-        run: firebase deploy --only hosting:test
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Reference the secret in the test environment
+        run: firebase deploy --only hosting:test  # Deploy to the "test" hosting target
