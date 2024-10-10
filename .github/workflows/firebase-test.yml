@@ -1,13 +1,15 @@
+
 name: Deploy to Firebase Test
 
 on:
   push:
     branches:
-      - test-root  # Trigger the workflow when changes are pushed to test-root
+      - test-root  # Trigger on pushes to test-root branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: test  # Specify the GitHub environment for test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,5 +24,5 @@ jobs:
 
       - name: Deploy to Firebase Test
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret stored in GitHub
-        run: firebase deploy --only hosting:test  # Deploy to the test hosting site
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Reference the secret for test environment
+        run: firebase deploy --only hosting:test
