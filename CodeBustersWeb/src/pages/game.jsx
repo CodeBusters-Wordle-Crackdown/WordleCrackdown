@@ -1,12 +1,15 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Game() {
-    return (
-        <div>
-            <h1>This is the unity game page</h1>
-        </div>
-    );
+    const { unityProvider } = useUnityContext({
+        loaderUrl: "build/myunityapp.loader.js",
+        dataUrl: "build/myunityapp.data",
+        frameworkUrl: "build/myunityapp.framework.js",
+        codeUrl: "build/myunityapp.wasm",
+    });
+
+    return <Unity unityProvider={unityProvider} />;
 }
 
-export default Game;
+export default Game
