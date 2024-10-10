@@ -22,5 +22,5 @@ jobs:
 
       - name: Deploy to Firebase Dev
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}  # Reference the environment secret
         run: firebase deploy --only hosting:dev
