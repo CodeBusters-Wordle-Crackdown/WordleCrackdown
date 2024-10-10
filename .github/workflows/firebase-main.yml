@@ -3,11 +3,12 @@ name: Deploy to Firebase Main
 on:
   push:
     branches:
-      - main  # Trigger the workflow when changes are pushed to main
+      - main  # Trigger on pushes to main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: main  # Specify the GitHub environment for production
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,5 +23,5 @@ jobs:
 
       - name: Deploy to Firebase Main
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_MAIN }}  # Use the secret stored in GitHub
-        run: firebase deploy --only hosting:main  # Deploy to the production hosting site
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_MAIN }}  # Reference the secret for main environment
+        run: firebase deploy --only hosting:main
