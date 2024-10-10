@@ -1,28 +1,37 @@
-
-name: Deploy to Firebase Dev
+name: Build and Deploy React Frontend to Firebase Dev
 
 on:
   push:
     branches:
-      - dev-root
+      - dev-root  # Trigger workflow on pushes to the dev-root branch
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment: dev  # Reference the GitHub environment for dev
+    environment: dev  # Reference the dev environment for secrets
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js  # Update Node.js version here
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'  # Use a compatible version like 18.x or 20.x
+          node-version: '18.x'  # Use Node.js 18.x for Firebase CLI compatibility
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm install  # Install React dependencies
+
+      - name: Build React App
+        run: |
+          cd frontend
+          npm run build  # Build the React app for deployment
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Deploy to Firebase Dev
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}  # Reference the environment secret
-        run: firebase deploy --only hosting:dev
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}  # Use the secret for dev environment
+        run: firebase deploy --only hosting:dev  # Deploy to the dev hosting target
