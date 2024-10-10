@@ -3,6 +3,8 @@
 [Tt]emp/
 [Oo]bj/
 [Ll]ogs/
+/*/[Bb]uild/*/
+[Bb]uilds/
 [Mm]emoryCaptures/
 *.stackdump
 *.pidb

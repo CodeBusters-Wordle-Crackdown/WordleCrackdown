@@ -19,9 +19,9 @@ public class Board : MonoBehaviour
     private Row[] rows;
     private CS_Letters[] letters;
     private Row currentRow;
-
     public int row_count;
     public int word_size;
+
 
     private string[] validWords;
     private string[] solutionWords;
@@ -74,6 +74,7 @@ public class Board : MonoBehaviour
             row.InitializeTiles();
         }
         
+
         letters = GameObject.Find("Letters").GetComponentsInChildren<CS_Letters>();
         LoadData();
         SetRandomWord();
@@ -82,6 +83,7 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         currentRow = rows[rowIndex];
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
@@ -109,6 +111,7 @@ public class Board : MonoBehaviour
             }
         }
     }
+
 
     public void InputChar(string input)
     {
@@ -156,6 +159,7 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < solutionWords.Length; i++)
             solutionWords[i] = solutionWords[i].Trim();
+
     }
 
     private void SetRandomWord()
@@ -183,9 +187,11 @@ public class Board : MonoBehaviour
         // Solution word that gets modified as letters are guessed in order to avoid duplicates
         string remaining = word;
 
+
         for(int i = 0; i < currentRow.tiles.Length; i++)
         {
             Tile tile = currentRow.tiles[i];
+
 
             // tile has correct letter
             if(tile.tileChar == word[i])
@@ -210,6 +216,7 @@ public class Board : MonoBehaviour
 
         // check for tiles that are neither fully correct or fully incorrect
         // (wrong spot tiles) or (guess with one correct letter and other wrong identical letters)
+
         for (int i = 0; i < currentRow.tiles.Length; i++)
         {
             Tile tile = currentRow.tiles[i];
@@ -236,6 +243,7 @@ public class Board : MonoBehaviour
             }
         }
 
+
         if (HasWon(currentRow))
         {
             // grey out remaining tiles on win
@@ -261,6 +269,7 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < validWords.Length; i++)
         {
+
             if (guess == validWords[i])
             {
                 return true;
@@ -298,6 +307,7 @@ public class Board : MonoBehaviour
                 rows[row].tiles[tile].SetState(emptyTileState);
             }
         }
+
         foreach (CS_Letters letter in letters)
         {
             letter.SetState(emptyLetterState);
@@ -311,6 +321,7 @@ public class Board : MonoBehaviour
     {
         foreach (CS_Letters letter in letters)
         {
+
             if (letter.letter == targetChar)
             {
                 letter.SetState(targetLetterState);
@@ -321,11 +332,11 @@ public class Board : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
     }
 
     private void OnDisable()
     {
-        
+
     }
 }
