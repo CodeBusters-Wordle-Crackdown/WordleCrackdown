@@ -19,6 +19,7 @@ public class Row : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     // Start is called before the first frame update
     void Start()
     {
@@ -30,4 +31,10 @@ public class Row : MonoBehaviour
     {
         
     }
+=======
+    public void InitializeTiles()
+    {
+        tiles = GetComponentsInChildren<Tile>();
+    }
+>>>>>>> Stashed changes
 }

@@ -17,6 +17,13 @@ public class Board : MonoBehaviour
 
     private Row[] rows;
     private CS_Letters[] letters;
+<<<<<<< Updated upstream
+=======
+    private Row currentRow;
+
+    public int row_count;
+    public int word_size;
+>>>>>>> Stashed changes
 
     private string[] validWords;
     private string[] solutionWords;
@@ -46,6 +53,16 @@ public class Board : MonoBehaviour
     private void Start()
     {
         rows = GetComponentsInChildren<Row>();
+<<<<<<< Updated upstream
+=======
+
+        //Tell rows they may initialize their tile size
+        foreach (Row row in rows)
+        {
+            row.InitializeTiles();
+        }
+        
+>>>>>>> Stashed changes
         letters = GameObject.Find("Letters").GetComponentsInChildren<CS_Letters>();
         LoadData();
         SetRandomWord();
@@ -54,10 +71,16 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         Row currentRow = rows[rowIndex];
 
         // backspace a character in row
         if (Input.GetKeyDown(KeyCode.Backspace))
+=======
+        currentRow = rows[rowIndex];
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
+>>>>>>> Stashed changes
         {
             columnIndex = Mathf.Max(columnIndex - 1, 0);
             currentRow.tiles[columnIndex].SetLetter('\0');
@@ -85,6 +108,24 @@ public class Board : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public void InputChar(string input)
+    {
+        // Receive the first character of input as a char
+        currentRow.tiles[columnIndex].SetLetter(input.ToLower()[0]);
+        columnIndex++;
+    }
+    
+    public void BackspaceChar()
+    {
+        columnIndex = Mathf.Max(columnIndex - 1, 0);
+        currentRow.tiles[columnIndex].SetLetter('\0');
+        currentRow.tiles[columnIndex].SetState(emptyTileState);
+        invalidWordText.SetActive(false);
+    }
+
+>>>>>>> Stashed changes
     private void LoadData()
     {
         TextAsset textFile = Resources.Load("official_wordle_all") as TextAsset;
@@ -92,6 +133,16 @@ public class Board : MonoBehaviour
 
         textFile = Resources.Load("official_wordle_common") as TextAsset;
         solutionWords = textFile.text.Split('\n');
+<<<<<<< Updated upstream
+=======
+
+        // remove space character at end of words
+        for (int i = 0; i < validWords.Length; i++)
+            validWords[i] = validWords[i].Trim();
+
+        for (int i = 0; i < solutionWords.Length; i++)
+            solutionWords[i] = solutionWords[i].Trim();
+>>>>>>> Stashed changes
     }
 
     private void SetRandomWord()
@@ -112,9 +163,15 @@ public class Board : MonoBehaviour
         // Solution word that gets modified as letters are guessed in order to avoid duplicates
         string remaining = word;
 
+<<<<<<< Updated upstream
         for(int i = 0; i < row.tiles.Length; i++)
         {
             Tile tile = row.tiles[i];
+=======
+        for(int i = 0; i < currentRow.tiles.Length; i++)
+        {
+            Tile tile = currentRow.tiles[i];
+>>>>>>> Stashed changes
 
             // tile has correct letter
             if(tile.tileChar == word[i])
@@ -139,7 +196,11 @@ public class Board : MonoBehaviour
 
         // check for tiles that are neither fully correct or fully incorrect
         // (wrong spot tiles) or (guess with one correct letter and other wrong identical letters)
+<<<<<<< Updated upstream
         for (int i = 0; i < row.tiles.Length; i++)
+=======
+        for (int i = 0; i < currentRow.tiles.Length; i++)
+>>>>>>> Stashed changes
         {
             Tile tile = row.tiles[i];
 
@@ -165,7 +226,11 @@ public class Board : MonoBehaviour
             }
         }
 
+<<<<<<< Updated upstream
         if (HasWon(row))
+=======
+        if (HasWon(currentRow))
+>>>>>>> Stashed changes
         {
             enabled = false;
         }
@@ -182,7 +247,11 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < validWords.Length; i++)
         {
+<<<<<<< Updated upstream
             if (validWords[i] == guess)
+=======
+            if (guess == validWords[i])
+>>>>>>> Stashed changes
             {
                 return true;
             }
@@ -219,6 +288,13 @@ public class Board : MonoBehaviour
                 rows[row].tiles[tile].SetState(emptyTileState);
             }
         }
+<<<<<<< Updated upstream
+=======
+        foreach (CS_Letters letter in letters)
+        {
+            letter.SetState(emptyLetterState);
+        }
+>>>>>>> Stashed changes
         rowIndex = 0;
         columnIndex = 0;
     }
@@ -228,7 +304,10 @@ public class Board : MonoBehaviour
     {
         foreach (CS_Letters letter in letters)
         {
+<<<<<<< Updated upstream
             Debug.Log(letter.letter + " - " + targetChar);
+=======
+>>>>>>> Stashed changes
             if (letter.letter == targetChar)
             {
                 letter.SetState(targetLetterState);
@@ -240,11 +319,19 @@ public class Board : MonoBehaviour
 
     private void OnEnable()
     {
+<<<<<<< Updated upstream
         newGameButton.SetActive(false);
+=======
+        
+>>>>>>> Stashed changes
     }
 
     private void OnDisable()
     {
+<<<<<<< Updated upstream
         newGameButton.SetActive(true);
+=======
+        
+>>>>>>> Stashed changes
     }
 }
