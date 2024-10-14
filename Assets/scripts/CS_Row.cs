@@ -19,10 +19,8 @@ public class Row : MonoBehaviour
         }
     }
 
-
     public void InitializeTiles()
     {
         tiles = GetComponentsInChildren<Tile>();
     }
-
 }
