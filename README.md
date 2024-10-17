@@ -200,6 +200,8 @@ Ensure you follow this process to ensure the correct Unity files and WebGL build
 2. **Verify** that the branch has been successfully merged, and the `dev` branch contains the new WebGL build and other files.
 3. After testing in `dev`, follow the same process to merge `dev` into `test` or `main` (prod) as needed.
 
+## Useful Links
+Firebase Unity SDK: https://firebase.google.com/download/unity
 ---
 
 ## Summary
