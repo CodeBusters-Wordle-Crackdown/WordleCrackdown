@@ -215,7 +215,7 @@ Ensure you follow this process to ensure the correct Unity files and WebGL build
 
 ---
 <<<<<<< HEAD
-## Part 7: Extracting and Rebuilding Unity Project
+## Part 7: Extracting and Rebuilding Unity Project from a zipped file
 To get access to the build folder, you need to convert to webGL (if you aren't already on it) and then rebuild the project. Here are some steps and screenshots to help you along the way:
 1. extract the folder and save it
 2. use the unity launcher and  `add> add project from disk`
