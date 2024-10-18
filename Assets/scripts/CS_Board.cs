@@ -21,11 +21,16 @@ public class Board : MonoBehaviour
     private Row currentRow;
 
     public int row_count;
+
+    [Header("Word size")]
     public int word_size;
 
     private string[] validWords;
     private string[] solutionWords;
-    private string word;
+
+    //added headder to show valid word -cehinds 18 Oct 24: 0847
+    [Header("Valid Word")]
+    public string word; //CHANGE BACK TO PRIVATE on release -cehinds 18 Oct 24: 0918
 
     private int rowIndex;
     private int columnIndex;
