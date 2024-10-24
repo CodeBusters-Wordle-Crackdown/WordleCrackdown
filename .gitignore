@@ -1,3 +1,30 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+/*/[Bb]uild/*/
+[Bb]uilds/
+[Mm]emoryCaptures/
+*.stackdump
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.opendb.meta
+*.VC.db.meta
+
+# Node.js and web frontend files (if applicable)
+node_modules/
+build/
+dist/
+
 # Firebase
 firebase-debug.log
 firebase-debug.*.log
@@ -51,8 +78,3 @@ __pycache__/
 UserSettings/Layouts/default-2022.dwlt
 /UserSettings/Layouts
 /UserSettings/Layouts
-
-# Node.js and web frontend files (if applicable)
-node_modules/
-build/
-dist/
