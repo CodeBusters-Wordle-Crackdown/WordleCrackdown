@@ -17,6 +17,7 @@
 *.mdb.meta
 *.opendb.meta
 *.VC.db.meta
+node_modules/
 
 # Firebase
 firebase-debug.log
