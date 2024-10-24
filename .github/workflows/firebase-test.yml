@@ -20,12 +20,12 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd frontend
+          cd WordleWebApp  # Update to your React app directory
           npm install  # Install React dependencies
 
       - name: Build React App
         run: |
-          cd frontend
+          cd WordleWebApp  # Update to your React app directory
           npm run build  # Build the React app for deployment
 
       - name: Install Firebase CLI
@@ -33,6 +33,5 @@ jobs:
 
       - name: Deploy to Firebase Test
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret for test environment
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret for the test environment
         run: firebase deploy --only hosting:test  # Deploy to the test hosting target
-
