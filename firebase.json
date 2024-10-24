@@ -17,7 +17,7 @@
     },
     {
       "target": "test",
-      "public": "public/test",
+      "public": "public",
       "ignore": [
         "firebase.json",
         "**/.*",
