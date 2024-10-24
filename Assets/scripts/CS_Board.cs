@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -30,6 +32,9 @@ public class Board : MonoBehaviour
     private int rowIndex;
     private int columnIndex;
 
+    [SerializeField]
+    private TextMeshProUGUI solutionWordText;
+
     [Header("Prefabs")]
     public GameObject tilePrefab;
 
@@ -50,7 +55,15 @@ public class Board : MonoBehaviour
     public GameObject invalidWordText;
     public GameObject newGameButton;
 
+    [Header("Timer")]
+    public CS_Timer CS_Timer;
 
+    [Header("Score")]
+    public TextMeshProUGUI scoreText;
+    private int score;
+
+
+    // Setup and start game
     private void Start()
     {
         //build dynamic gameboard
@@ -77,22 +90,32 @@ public class Board : MonoBehaviour
         letters = GameObject.Find("Letters").GetComponentsInChildren<CS_Letters>();
         LoadData();
         SetRandomWord();
+        solutionWordText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        CS_Timer.StartTimer();
+        if(CS_Timer.infiniteMode)
+        {
+            scoreText.gameObject.SetActive(true);
+            score = 0;
+            scoreText.text = ("Score: " + score);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         currentRow = rows[rowIndex];
-
+        // check for backspace input
         if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
         {
             BackspaceChar();
         }
+        // check for enter key input
         else if (UnityEngine.Input.GetKeyDown(KeyCode.Return))
         {
             SubmitRow();
         }
-        // check for input
+        // check for character input
         else if (columnIndex < word_size)
         {
             for (int i = 0; i < VALID_INPUTS.Length; i++)
@@ -127,28 +150,34 @@ public class Board : MonoBehaviour
 
     private void LoadData()
     {
-        TextAsset textFile = null;
+        TextAsset solutionFile = null;
+        TextAsset validFile = null;
 
         switch (word_size)
         {
             case 3:
-                textFile = Resources.Load("three_word_list") as TextAsset;
+                solutionFile = Resources.Load("3_solution_list") as TextAsset;
+                validFile = Resources.Load("3_valid_list") as TextAsset;
                 break;
             case 4:
-                textFile = Resources.Load("four_word_list") as TextAsset;
+                solutionFile = Resources.Load("4_solution_list") as TextAsset;
+                validFile = Resources.Load("4_valid_list") as TextAsset;
                 break;
             case 5:
-                textFile = Resources.Load("official_wordle_common") as TextAsset;
+                solutionFile = Resources.Load("official_wordle_common") as TextAsset;
+                validFile = Resources.Load("official_wordle_all") as TextAsset;
                 break;
             case 6:
-                textFile = Resources.Load("six_word_list") as TextAsset;
+                solutionFile = Resources.Load("6_solution_list") as TextAsset;
+                validFile = Resources.Load("6_valid_list") as TextAsset;
                 break;
             case 7:
-                textFile = Resources.Load("seven_word_list") as TextAsset;
+                solutionFile = Resources.Load("7_solution_list") as TextAsset;
+                validFile = Resources.Load("7_valid_list") as TextAsset;
                 break;
         }
-        validWords = textFile.text.Split('\n');
-        solutionWords = textFile.text.Split('\n');
+        validWords = validFile.text.Split('\n');
+        solutionWords = solutionFile.text.Split('\n');
 
         // remove space character at end of words
         for (int i = 0; i < validWords.Length; i++)
@@ -160,7 +189,7 @@ public class Board : MonoBehaviour
 
     private void SetRandomWord()
     {
-        word = solutionWords[Random.Range(0, solutionWords.Length)];
+        word = solutionWords[UnityEngine.Random.Range(0, solutionWords.Length)];
         word = word.ToLower().Trim();
     }
 
@@ -236,17 +265,22 @@ public class Board : MonoBehaviour
             }
         }
 
+        // check if guess matches answer
         if (HasWon(currentRow))
         {
-            // grey out remaining tiles on win
-            for (int row = rowIndex + 1; row < rows.Length; row++)
+            if (CS_Timer.infiniteMode)
             {
-                for (int tile = 0; tile < rows[row].tiles.Length; tile++)
-                {
-                    rows[row].tiles[tile].SetState(incorrectTileState);
-                }
+                score++;
+                scoreText.text = ("Score: " + score);
+                CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
+                ClearBoard();
+                SetRandomWord();
+                return;
             }
-            enabled = false;
+            else
+            {
+                GameOver();
+            }
         }
 
         rowIndex++;
@@ -254,7 +288,7 @@ public class Board : MonoBehaviour
 
         // exhausted all guesses and failed
         if (rowIndex >= rows.Length)
-            enabled = false;
+            GameOver();
     }
 
     private bool IsValidWord(string guess)
@@ -280,11 +314,29 @@ public class Board : MonoBehaviour
         }
         return true;
     }
+    
+    public void GameOver()
+    {
+        // grey out remaining tiles on win
+        for (int row = rowIndex + 1; row < rows.Length; row++)
+        {
+            for (int tile = 0; tile < rows[row].tiles.Length; tile++)
+            {
+                rows[row].tiles[tile].SetState(incorrectTileState);
+            }
+        }
+        CS_Timer.StopTimer();
+        solutionWordText.gameObject.SetActive(true);
+        solutionWordText.text = "Solution: " + word;
+        enabled = false;
+    }
 
     public void NewGame()
     {
         ClearBoard();
         SetRandomWord();
+        CS_Timer.ResetTimer();
+        CS_Timer.StartTimer();
         enabled = true;
     }
 
@@ -304,6 +356,8 @@ public class Board : MonoBehaviour
         }
         rowIndex = 0;
         columnIndex = 0;
+        solutionWordText.gameObject.SetActive(false);
+        invalidWordText.SetActive(false);
     }
 
     // Sets a specific character on the lower keyboard to a specific state
@@ -317,15 +371,5 @@ public class Board : MonoBehaviour
                 break;
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }
