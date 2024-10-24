@@ -1,13 +1,13 @@
 {
   "projects": {
-    "default": "word-buster-99508"  // Replace with your Firebase Project ID
+    "default": "word-buster-99508"  // Project ID
   },
   "targets": {
-    "word-buster-99508": {  // Replace with your Firebase Project ID
+    "word-buster-99508": { 
       "hosting": {
-        "dev": ["wordlecrackdown-dev"],  // Replace with your Site ID for dev
-        "test": ["wordlecrackdown-test"],  // Replace with your Site ID for test
-        "main": ["wordlecrackdown-prod"]  // Replace with your Site ID for main
+        "dev": ["wordlecrackdown-dev"],  // Site ID for dev environment
+        "test": ["wordlecrackdown-test"],  // Site ID for test environment
+        "main": ["wordlecrackdown-prod"]  // Site ID for production environment
       }
     }
   }
