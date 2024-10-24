@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "dev",
-      "public": "public",  // Separate folder for dev
+      "public": "WordleWebApp/public",  // Updated to point to the correct location
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -17,7 +17,7 @@
     },
     {
       "target": "test",
-      "public": "public",  // Separate folder for test
+      "public": "WordleWebApp/public",  // Updated to point to the correct location
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -32,7 +32,7 @@
     },
     {
       "target": "main",
-      "public": "public",  // Separate folder for main
+      "public": "WordleWebApp/public",  // Updated to point to the correct location
       "ignore": [
         "firebase.json",
         "**/.*",
