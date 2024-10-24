@@ -3,12 +3,12 @@ name: Build and Deploy React Frontend to Firebase Test
 on:
   push:
     branches:
-      - test-root  # Trigger workflow on pushes to the test-root branch
+      - dev-root  # Trigger workflow on pushes to the test-root branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: test  # Reference the test environment for secrets
+    environment: dev  # Reference the test environment for secrets
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Deploy to Firebase Test
+      - name: Deploy to Firebase Dev
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret for the test environment
-        run: firebase deploy --only hosting:test  # Deploy to the test hosting target
+        run: firebase deploy --only hosting:dev  # Deploy to the test hosting target
