@@ -19,25 +19,25 @@
 *.mdb.meta
 *.opendb.meta
 *.VC.db.meta
+
+# Node.js and web frontend files (if applicable)
 node_modules/
+build/
+dist/
 
 # Firebase
 firebase-debug.log
 firebase-debug.*.log
 .firebase/
-
-# Firebase Service Account Keys
-serviceAccountKey.json
+serviceAccountKey.json  # Ensure this is excluded for security reasons
 
 # Unity specific folders
 Assets/StreamingAssets/*
 !Assets/StreamingAssets/.gitkeep
-# Ignore the EditorUserSettings file, which can contain personal info
 ProjectSettings/EditorUserSettings.asset
 
 # TextMesh Pro files (Unity add-on for better text rendering)
-# These should only be ignored if you don't want to store them in version control
-Assets/TextMesh Pro/
+Assets/TextMesh Pro/  # Only exclude if you don’t want to version-control TextMesh Pro
 
 # Visual Studio
 .vscode/
@@ -49,7 +49,6 @@ Assets/TextMesh Pro/
 *.userosscache
 *.sln.docstates
 .vs/
-# ASP.NET Scaffolding
 .scaffolding
 
 # Ignore build outputs
@@ -79,4 +78,3 @@ __pycache__/
 UserSettings/Layouts/default-2022.dwlt
 /UserSettings/Layouts
 /UserSettings/Layouts
-node_modules/
