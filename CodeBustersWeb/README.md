@@ -11,7 +11,7 @@ Assuming you have everything linked to your own device here is the steps you nee
 
 Now you are in the branch with all these files
 
-## 2 Step: Move to CodeBustersWeb folder by typing "cd/CodeBustersWeb"
+## 2 Step: Move to CodeBustersWeb folder by typing "cd CodeBustersWeb"
 
 This ensures you make the next step inside the folder
 
@@ -23,7 +23,11 @@ For this step is crucial you download the lastes version or a Long Term Service 
 
 This module provides a physics based spring like parallax animation.
 
-## N Step: Finally run "npm run dev"
+## 5 Step: Install Node.js and run "npm i react-router-dom"
+This module provides a physics based spring like parallax animation.
 
-This will give you a localhost address where the website will be appering
+## 6 Step: Finally run "npm run dev"
+
+This will give you a localhost address where the website will be appering, just copy a and paste
+this address and this will show the current state of the website.
 

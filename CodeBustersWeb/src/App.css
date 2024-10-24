@@ -51,6 +51,14 @@ footer {
   text-size-adjust: -30px;
 }
 
+#GameSection {
+  background-color: #242424;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  justify-content: center;
+}
+
 #footer {
   background-color: #787c7f;
 }
