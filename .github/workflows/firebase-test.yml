@@ -1,14 +1,14 @@
-name: Build and Deploy React Frontend to Firebase Test
+
+name: Deploy to Firebase Test
 
 on:
   push:
     branches:
-      - test-root  # Trigger workflow on pushes to the test-root branch
+      - test-root  # Trigger on test-root branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: test  # Reference the test environment for secrets
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,12 +20,12 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd WordleWebApp  # Change this to your correct directory
+          cd WordleWebApp  # Adjust path if necessary
           npm install
 
       - name: Build React App
         run: |
-          cd WordleWebApp  # Adjust to correct path
+          cd WordleWebApp  # Adjust path if necessary
           npm run build
 
       - name: Install Firebase CLI
@@ -33,5 +33,5 @@ jobs:
 
       - name: Deploy to Firebase Test
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret for the test environment
-        run: firebase deploy --only hosting:test  # Deploy to the test hosting target
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}
+        run: firebase deploy --only hosting:test
