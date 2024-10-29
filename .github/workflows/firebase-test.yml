@@ -4,7 +4,7 @@ name: Deploy to Firebase Test
 on:
   push:
     branches:
-      - test
+      - test-root
 
 jobs:
   build-and-deploy:
