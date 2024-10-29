@@ -18,6 +18,7 @@
 *.opendb.meta
 *.VC.db.meta
 node_modules/
+
 build/
 dist/
 
