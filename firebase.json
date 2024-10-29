@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "dev",
-      "public": "public/dev",
+      "public": "public",
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -17,7 +17,7 @@
     },
     {
       "target": "test",
-      "public": "public/test",
+      "public": "public",
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -32,7 +32,7 @@
     },
     {
       "target": "main",
-      "public": "public/main",
+      "public": "public",
       "ignore": [
         "firebase.json",
         "**/.*",
