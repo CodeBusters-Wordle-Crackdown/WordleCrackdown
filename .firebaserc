@@ -1,14 +1,21 @@
 {
   "projects": {
-    "default": "word-buster-99508"  // Project ID
+    "default": "word-buster-99508"
   },
   "targets": {
-    "word-buster-99508": { 
+    "word-buster-99508": {
       "hosting": {
-        "dev": ["wordlecrackdown-dev"],  // Site ID for dev environment
-        "test": ["wordlecrackdown-test"],  // Site ID for test environment
-        "main": ["wordlecrackdown-prod"]  // Site ID for production environment
+        "dev": [
+          "wordlecrackdown-dev"
+        ],
+        "test": [
+          "wordlecrackdown-test"
+        ],
+        "prod": [
+          "wordlecrackdown-prod"
+        ]
       }
     }
-  }
+  },
+  "etags": {}
 }
