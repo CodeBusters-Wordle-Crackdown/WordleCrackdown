@@ -1,49 +1,23 @@
+
 {
   "hosting": [
     {
       "target": "dev",
-      "public": "WordleWebApp/public",  // Correct path to public folder inside WordleWebApp
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "public": "WordleWebApp/public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
       "target": "test",
-      "public": "WordleWebApp/public",  // Correct path to public folder inside WordleWebApp
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "public": "WordleWebApp/public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
-      "target": "main",
-      "public": "WordleWebApp/public",  // Correct path to public folder inside WordleWebApp
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "target": "prod",
+      "public": "WordleWebApp/public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }
   ]
 }
