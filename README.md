@@ -2,6 +2,11 @@
 Fierce wordle game play in a fresh approach
 
 [https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html](https://cehinds.github.io/wordcrackdownTest/)
+https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
+
+
+*Unity version 2022.3.45f1*
+
 
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
@@ -19,6 +24,8 @@ Fierce wordle game play in a fresh approach
 4. Choose a local directory on your machine where the repository will be cloned.
 5. Click **Clone**.
 6. Wait for Visual Studio to complete the cloning process. The Unity project files will now be available on your local machine.
+7. Open UnityHub and Click Add
+8. In the dropdown menu, select add new project from disk, then select the folder you just cloned
 
 
 ## Part 2: Creating a New Branch from `dev`
@@ -197,7 +204,28 @@ Ensure you follow this process to ensure the correct Unity files and WebGL build
 2. **Verify** that the branch has been successfully merged, and the `dev` branch contains the new WebGL build and other files.
 3. After testing in `dev`, follow the same process to merge `dev` into `test` or `main` (prod) as needed.
 
----
+## Part 7: Extracting and Rebuilding Unity Project
+To get access to the build folder, you need to convert to webGL (if you aren't already on it) and then rebuild the project. Here are some steps and screenshots to help you along the way:
+1. extract the folder and save it
+2. use the unity launcher and  `add> add project from disk`
+   ![image](https://github.com/user-attachments/assets/48409d48-488a-4cd7-83e5-e7ef22e9c1a0)
+   ![image](https://github.com/user-attachments/assets/f740dbba-db4f-44ff-b465-b84afe5b4a68)
+3. navigate to folder where you extracted the zipped file
+4. `add project`
+   ![image](https://github.com/user-attachments/assets/ae4aaca3-6171-440f-90b2-9ec34d023073)
+5. after it's added, open up the project
+6. In the `Projects` tab, open the `scenes` folder and open any scene by double clicking on it, e.g. `scene_mainmenu`
+   ![image](https://github.com/user-attachments/assets/77894ba0-18a7-48a3-99fe-583897fc4fca)
+7. run the project to see if it works by pressing either f5 or the play button at the top
+   ![image](https://github.com/user-attachments/assets/e575b96b-5d90-4adf-a601-933dce01b08d)
+8. if your project works go to `file>build settings`
+9.  the build settings dialog box should pop up, there select WebGL and then click on the switch platform 
+   `note: it may complain about compiling scripts, just ensure there are no scripts compiling, or open and close any script from the scripts folder. Once it's done compiling, try again`
+   ![image](https://github.com/user-attachments/assets/8fe9353a-93a4-4027-93fe-9aadd4bb2484)
+10. after it is done switching platforms, click `build and run`
+    `note: it may ask you to select a folder to store the builds, I usually save it either the current builds folder or make a new folder called builds`
+    
+   ![image](https://github.com/user-attachments/assets/13d5bf67-0596-432d-abf2-984446097bc2
 
 ## Summary
 This guide covers:
@@ -207,6 +235,6 @@ This guide covers:
 4. Building WebGL in Unity.
 5. Committing and pushing changes to GitHub.
 6. Verifying branch contents and merging branches.
-
+7. Extracting and Rebuilding Unity Project
 Ensure these steps are followed carefully to maintain consistent workflows and avoid missing files.
 
