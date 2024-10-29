@@ -8,11 +8,13 @@
         "dev": [
           "wordlecrackdown-dev"
         ],
+
         "prod": [
           "wordlecrackdown-prod"
         ],
         "test": [
           "wordlecrackdown-test"
+
         ]
       }
     }
