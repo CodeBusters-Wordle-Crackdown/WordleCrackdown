@@ -8,6 +8,7 @@ https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
 *Unity version 2022.3.45f1*
 
 
+
 # Detailed Instructions for Cloning GitHub Repository and Committing Unity WebGL Build to GitHub
 
 ## Part 1: Cloning a GitHub Repository in Visual Studio (Unity Project)
@@ -204,6 +205,7 @@ Ensure you follow this process to ensure the correct Unity files and WebGL build
 2. **Verify** that the branch has been successfully merged, and the `dev` branch contains the new WebGL build and other files.
 3. After testing in `dev`, follow the same process to merge `dev` into `test` or `main` (prod) as needed.
 
+
 ## Part 7: Extracting and Rebuilding Unity Project
 To get access to the build folder, you need to convert to webGL (if you aren't already on it) and then rebuild the project. Here are some steps and screenshots to help you along the way:
 1. extract the folder and save it
@@ -227,6 +229,7 @@ To get access to the build folder, you need to convert to webGL (if you aren't a
     
    ![image](https://github.com/user-attachments/assets/13d5bf67-0596-432d-abf2-984446097bc2
 
+
 ## Summary
 This guide covers:
 1. Opening Visual Studio and creating a Unity project.
@@ -236,5 +239,6 @@ This guide covers:
 5. Committing and pushing changes to GitHub.
 6. Verifying branch contents and merging branches.
 7. Extracting and Rebuilding Unity Project
+
 Ensure these steps are followed carefully to maintain consistent workflows and avoid missing files.
 

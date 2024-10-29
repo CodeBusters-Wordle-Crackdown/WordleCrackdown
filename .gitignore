@@ -19,8 +19,6 @@
 *.VC.db.meta
 node_modules/
 
-# Node.js and web frontend files (if applicable)
-node_modules/
 build/
 dist/
 
@@ -77,3 +75,4 @@ __pycache__/
 UserSettings/Layouts/default-2022.dwlt
 /UserSettings/Layouts
 /UserSettings/Layouts
+
