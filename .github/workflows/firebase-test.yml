@@ -4,11 +4,12 @@ name: Deploy to Firebase Test
 on:
   push:
     branches:
-      - test-root  # Trigger on test-root branch
+      - test
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: test  # Link to GitHub test environment
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -34,4 +35,4 @@ jobs:
       - name: Deploy to Firebase Test
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}
-        run: firebase deploy --only hosting:test
+        run: firebase deploy --only hosting:test --project word-buster-99508
