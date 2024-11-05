@@ -1,6 +1,8 @@
 using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -31,6 +33,9 @@ public class Board : MonoBehaviour
 
     private int rowIndex;
     private int columnIndex;
+
+    [SerializeField]
+    private TextMeshProUGUI solutionWordText;
 
     [SerializeField]
     private TextMeshProUGUI solutionWordText;
@@ -107,15 +112,18 @@ public class Board : MonoBehaviour
     {
         currentRow = rows[rowIndex];
         // check for backspace input
+        // check for backspace input
         if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
         {
             BackspaceChar();
         }
         // check for enter key input
+        // check for enter key input
         else if (UnityEngine.Input.GetKeyDown(KeyCode.Return))
         {
             SubmitRow();
         }
+        // check for character input
         // check for character input
         else if (columnIndex < word_size)
         {
@@ -153,30 +161,44 @@ public class Board : MonoBehaviour
     {
         TextAsset solutionFile = null;
         TextAsset validFile = null;
+        TextAsset solutionFile = null;
+        TextAsset validFile = null;
 
         switch (word_size)
         {
             case 3:
                 solutionFile = Resources.Load("3_solution_list") as TextAsset;
                 validFile = Resources.Load("3_valid_list") as TextAsset;
+                solutionFile = Resources.Load("3_solution_list") as TextAsset;
+                validFile = Resources.Load("3_valid_list") as TextAsset;
                 break;
             case 4:
+                solutionFile = Resources.Load("4_solution_list") as TextAsset;
+                validFile = Resources.Load("4_valid_list") as TextAsset;
                 solutionFile = Resources.Load("4_solution_list") as TextAsset;
                 validFile = Resources.Load("4_valid_list") as TextAsset;
                 break;
             case 5:
                 solutionFile = Resources.Load("official_wordle_common") as TextAsset;
                 validFile = Resources.Load("official_wordle_all") as TextAsset;
+                solutionFile = Resources.Load("official_wordle_common") as TextAsset;
+                validFile = Resources.Load("official_wordle_all") as TextAsset;
                 break;
             case 6:
+                solutionFile = Resources.Load("6_solution_list") as TextAsset;
+                validFile = Resources.Load("6_valid_list") as TextAsset;
                 solutionFile = Resources.Load("6_solution_list") as TextAsset;
                 validFile = Resources.Load("6_valid_list") as TextAsset;
                 break;
             case 7:
                 solutionFile = Resources.Load("7_solution_list") as TextAsset;
                 validFile = Resources.Load("7_valid_list") as TextAsset;
+                solutionFile = Resources.Load("7_solution_list") as TextAsset;
+                validFile = Resources.Load("7_valid_list") as TextAsset;
                 break;
         }
+        validWords = validFile.text.Split('\n');
+        solutionWords = solutionFile.text.Split('\n');
         validWords = validFile.text.Split('\n');
         solutionWords = solutionFile.text.Split('\n');
 
@@ -190,6 +212,7 @@ public class Board : MonoBehaviour
 
     private void SetRandomWord()
     {
+        word = solutionWords[UnityEngine.Random.Range(0, solutionWords.Length)];
         word = solutionWords[UnityEngine.Random.Range(0, solutionWords.Length)];
         word = word.ToLower().Trim();
         scoreString = word;
@@ -283,6 +306,7 @@ public class Board : MonoBehaviour
         }
 
         // check if guess matches answer
+        // check if guess matches answer
         if (HasWon(currentRow))
         {
             score += score * (row_count - rowIndex);
@@ -305,6 +329,7 @@ public class Board : MonoBehaviour
 
         // exhausted all guesses and failed
         if (rowIndex >= rows.Length)
+            GameOver();
             GameOver();
     }
 
@@ -376,6 +401,8 @@ public class Board : MonoBehaviour
         }
         rowIndex = 0;
         columnIndex = 0;
+        solutionWordText.gameObject.SetActive(false);
+        invalidWordText.SetActive(false);
         solutionWordText.gameObject.SetActive(false);
         invalidWordText.SetActive(false);
     }
