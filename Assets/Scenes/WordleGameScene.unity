@@ -3294,7 +3294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   row_count: 6
-  word_size: 4
+  word_size: 5
   solutionWordText: {fileID: 560363556}
   tilePrefab: {fileID: 8629140154309839602}
   emptyTileState:
@@ -3319,6 +3319,8 @@ MonoBehaviour:
   newGameButton: {fileID: 1320736412}
   CS_Timer: {fileID: 1234221676}
   scoreText: {fileID: 2141285827}
+  correctLetterScore: 150
+  wrongSpotLetterScore: 50
 --- !u!1001 &996231740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3818,6 +3820,7 @@ MonoBehaviour:
   timeLimit: 300
   infiniteMode: 0
   correctGuessTimeReward: 180
+  timer: 0
 --- !u!114 &1234221677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6200,7 +6203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2141285826
 RectTransform:
   m_ObjectHideFlags: 0
