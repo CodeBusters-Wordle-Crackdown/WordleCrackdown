@@ -3,8 +3,6 @@
 [Tt]emp/
 [Oo]bj/
 [Ll]ogs/
-/*/[Bb]uild/*/
-[Bb]uilds/
 [Mm]emoryCaptures/
 *.stackdump
 *.pidb
@@ -19,9 +17,8 @@
 *.mdb.meta
 *.opendb.meta
 *.VC.db.meta
-
-# Node.js and web frontend files (if applicable)
 node_modules/
+
 build/
 dist/
 
@@ -77,4 +74,4 @@ __pycache__/
 [Uu]nity[Oo]pener/
 UserSettings/Layouts/default-2022.dwlt
 /UserSettings/Layouts
-/UserSettings/Layouts
+
