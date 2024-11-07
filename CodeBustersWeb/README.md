@@ -23,6 +23,10 @@ For this step is crucial you download the lastes version or a Long Term Service 
 
 This module provides a physics based spring like parallax animation.
 
+### Modifying Parallax & Propperties
+
+React spring parallax adds an element named Parallax which includes a property pages that adds working space in the body/canvas with respect to the device being use. While using it, it messes with the Z-index, so instead it adds an element ParallaxLayer, which has properties offset, to indicate layers or position, and speed, that species how fast it should move. Be aware that ParallaxLayer should be always inside the Parallax element in order to work.
+
 ## 5 Step: Install Node.js and run "npm i react-router-dom"
 This module provides a physics based spring like parallax animation.
 
@@ -31,3 +35,6 @@ This module provides a physics based spring like parallax animation.
 This will give you a localhost address where the website will be appering, just copy a and paste
 this address and this will show the current state of the website.
 
+## n Step (optional): Building a Static Website with React
+
+So far we have running to develop, but if you want to test how it works in reality with a hosting website you'll have to create a static page. For this you'll have to run "npm build" once you have all dependencies attached. This will create a compressed version of the website.

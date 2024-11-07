@@ -4,6 +4,7 @@ import Home from './pages/home.jsx';
 import About from './pages/about.jsx';
 import Blog from './pages/blog.jsx';
 import Game from './pages/game.jsx';
+import Login from './pages/login.jsx';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router >
 
