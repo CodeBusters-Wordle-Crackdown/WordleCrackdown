@@ -3,16 +3,16 @@ import '../App.css';
 import Header from '../components/Header';
 import Footer from '../components/footer';
 
-function Blog() {
+function About() {
     return (
 
         <div>
             <Header />
-            <h1>This is the blog page</h1>
+            <h1>This is the login page</h1>
             <Footer />
         </div>
 
     );
 }
 
-export default Blog;
+export default About;
