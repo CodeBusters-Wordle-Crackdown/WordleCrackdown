@@ -6,7 +6,6 @@ import Blog from './pages/blog.jsx';
 import Game from './pages/game.jsx';
 import Login from './pages/login.jsx';
 
-
 function App() {
 
   return (
