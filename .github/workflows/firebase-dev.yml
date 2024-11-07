@@ -1,14 +1,15 @@
-name: Build and Deploy React Frontend to Firebase Test
+
+name: Deploy to Firebase Dev
 
 on:
   push:
     branches:
-      - dev-root  # Trigger workflow on pushes to the test-root branch
+      - dev
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: dev  # Reference the test environment for secrets
+    environment: dev  # Link to GitHub dev environment
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,16 +17,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'  # Use Node.js 18.x for Firebase CLI compatibility
+          node-version: '18.x'
 
       - name: Install Dependencies
         run: |
-          cd WordleWebApp  # Change to the correct directory where package.json is located
+          cd WordleWebApp  # Adjust path if necessary
           npm install
 
       - name: Build React App
         run: |
-          cd WordleWebApp  # Adjust to correct path
+          cd WordleWebApp  # Adjust path if necessary
           npm run build
 
       - name: Install Firebase CLI
@@ -33,5 +34,5 @@ jobs:
 
       - name: Deploy to Firebase Dev
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_TEST }}  # Use the secret for the test environment
-        run: firebase deploy --only hosting:dev  # Deploy to the test hosting target
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+        run: firebase deploy --only hosting:dev --project word-buster-99508
