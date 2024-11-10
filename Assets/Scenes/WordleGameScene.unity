@@ -3317,6 +3317,7 @@ MonoBehaviour:
     tileColor: {r: 0, g: 0, b: 0, a: 0}
   invalidWordText: {fileID: 1531767533}
   newGameButton: {fileID: 1320736412}
+  timerMode: 0
   CS_Timer: {fileID: 1234221676}
   scoreText: {fileID: 2141285827}
   correctLetterScore: 150
