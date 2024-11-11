@@ -13,6 +13,7 @@ body {
   padding: 3 16px;
 }
 
+/*-----------------------------------Header Styling-----------------------------------*/
 header {
   background-color: white;
   margin: 0;
@@ -20,29 +21,18 @@ header {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-ul {
-  background-color: rgb(110, 3, 3);
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0px;
-  display: flex;
-  justify-content: center;
-}
-
-li {
-  list-style: none;
+li a {
+  color: #000000;
   padding: 0 10px;
   font-size: 25px;
   font-family: "McLaren", sans-serif;
+  text-decoration: none;
 }
 
-footer {
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
+li a:hover {
+  color: rgb(108, 169, 101);
+  padding: 0px 10px;
 }
-
 
 #msgOnTime {
   background-color: #000000;
@@ -50,6 +40,76 @@ footer {
   font-family: "McLaren", sans-serif;
   text-size-adjust: -30px;
 }
+
+#WordleLogo {
+  height: 50px;
+  width: auto;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: left;
+}
+
+#login {
+  background-color: rgb(226, 221, 221);
+  color: #000;
+  border-top-right-radius: 35%;
+  border-bottom-right-radius: 37%;
+  font-size: 20px;
+  border-top-left-radius: 45%;
+  border-bottom-left-radius: 45%;
+  width: 220px;
+  gap: 10px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: right;
+}
+
+#login a {
+  font-family: "McLaren", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  padding: 10px;
+  font-size: 20px;
+  border: 0px;
+}
+
+#login a:hover {
+  color: rgb(200, 182, 83);
+}
+
+#login button {
+  border-radius: 45%;
+  margin: 0px;
+  border-color: rgb(108, 169, 101);
+  background-color: rgb(108, 169, 101);
+}
+
+.nav-container {
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.nav-links {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  list-style: none;
+}
+
+.logo {
+  height: 50px;
+}
+
+/*-----------------------------------Home Page Styles-----------------------------------*/
 
 #GameSection {
   background-color: #242424;
@@ -59,9 +119,6 @@ footer {
   justify-content: center;
 }
 
-#footer {
-  background-color: #787c7f;
-}
 
 #Layer2 {
   background-color: #000000;
@@ -73,7 +130,6 @@ footer {
   font-style: normal;
 }
 
-
 .animation_lp {
   height: 500px;
 }
@@ -83,7 +139,19 @@ footer {
 }
 
 
-
 #artback {
   background-image: url(./images/wordleAnimation.gif);
+}
+
+/*-----------------------------------Footer Styling-----------------------------------*/
+
+#footer {
+  background-color: #787c7f;
+}
+
+footer {
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
