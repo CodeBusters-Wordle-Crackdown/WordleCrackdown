@@ -1,4 +1,3 @@
-
 name: Firebase Deploy to Main
 
 on:
@@ -21,9 +20,14 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Deploy to Firebase
+      - name: Set up Firebase credentials
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
         run: |
-          echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
-          firebase deploy --only hosting --token "$(firebase login:ci --project default)"
+          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > serviceAccount.json
+          export GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json
+
+      - name: Deploy to Firebase
+        run: |
+          firebase deploy --only hosting
+
