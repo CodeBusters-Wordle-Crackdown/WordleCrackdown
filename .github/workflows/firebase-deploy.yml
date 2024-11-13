@@ -1,4 +1,5 @@
-name: Firebase Deploy Entire Project
+
+name: Firebase Deploy to Main
 
 on:
   push:
@@ -15,12 +16,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'  # Updated to Node.js 18 for compatibility
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Deploy Entire Project to Firebase
+      - name: Deploy to Firebase
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
