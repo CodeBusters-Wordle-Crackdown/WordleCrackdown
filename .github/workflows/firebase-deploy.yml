@@ -24,9 +24,15 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
         run: |
+<<<<<<< HEAD
           echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > serviceAccount.json
           export GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json
 
       - name: Deploy to Firebase
         run: |
           firebase deploy --only hosting
+=======
+          echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
+          firebase deploy --only hosting --token "$(firebase login:ci --project default)"
+
+>>>>>>> 8cc757a98b1ba016da52825f4d05d2dde7343f02
