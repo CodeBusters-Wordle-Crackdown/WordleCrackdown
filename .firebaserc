@@ -5,16 +5,8 @@
   "targets": {
     "word-buster-99508": {
       "hosting": {
-        "dev": [
-          "wordlecrackdown-dev"
-        ],
-
-        "prod": [
-          "wordlecrackdown-prod"
-        ],
-        "test": [
-          "wordlecrackdown-test"
-
+        "main": [
+          "default"
         ]
       }
     }
