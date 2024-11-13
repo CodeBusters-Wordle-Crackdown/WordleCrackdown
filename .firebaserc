@@ -5,38 +5,11 @@
   "targets": {
     "word-buster-99508": {
       "hosting": {
-        "dev": [
-<<<<<<< HEAD
-          "word-buster-99508-dev",
-          "wordlecrackdown-dev"
-        ],
-        "test": [
-          "wordlecrackdown-test"
-        ],
         "main": [
-          "wordlecrackdown-prod"
+          "default"
         ]
       }
     }
   },
   "etags": {}
 }
-=======
-          "wordlecrackdown-dev"
-        ],
-
-        "prod": [
-          "wordlecrackdown-prod"
-        ],
-        "test": [
-          "wordlecrackdown-test"
-
-        ]
-      }
-    }
-
-  },
-  "etags": {}
-}
-
->>>>>>> 6e01635d3ae3845fc45938d1d9feeed3daab249a
