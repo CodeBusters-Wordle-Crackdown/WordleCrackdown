@@ -25,4 +25,4 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
-          firebase deploy --only hosting:main --token "$(firebase login:ci --project word-buster-99508)"
+          firebase deploy --only hosting:main --token "$(firebase login:ci --project default)"
