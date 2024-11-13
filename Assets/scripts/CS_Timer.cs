@@ -22,14 +22,14 @@ public class CS_Timer : MonoBehaviour
     [Tooltip("If infinite mode is enabled, how much time should be added on correct guess in seconds")]
     public float correctGuessTimeReward;
 
-    private float timer;
+    public float timer;
     private bool isTimerRunning;
 
     // Update is called once per frame
     void Update()
     {
         if(isTimerRunning)
-            IncrementTimer();
+            RunTimer();
     }
 
     public void ResetTimer()
@@ -57,7 +57,7 @@ public class CS_Timer : MonoBehaviour
 
     }
 
-    public void IncrementTimer()
+    public void RunTimer()
     {
         TimeSpan time;
         // increment timer

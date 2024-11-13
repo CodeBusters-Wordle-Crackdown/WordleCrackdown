@@ -36,3 +36,4 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
         run: firebase deploy --only hosting:dev --project word-buster-99508
+

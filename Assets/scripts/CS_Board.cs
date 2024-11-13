@@ -56,16 +56,27 @@ public class Board : MonoBehaviour
     public GameObject newGameButton;
 
     [Header("Timer")]
+    public bool timerMode = false;
     public CS_Timer CS_Timer;
 
     [Header("Score")]
     public TextMeshProUGUI scoreText;
     private int score;
+    [SerializeField]
+    private int correctLetterScore;
+    [SerializeField]
+    private int wrongSpotLetterScore;
+    // Keeps track of which letter has already been scored
+    private string scoreString;
 
 
     // Setup and start game
     private void Start()
     {
+        //loadGameMode data --cehinds 10 Nov 24
+        
+        //loadGameMode();
+
         //build dynamic gameboard
         GameObject rowPrefab = GetComponentInChildren<Row>().gameObject;
 
@@ -91,14 +102,16 @@ public class Board : MonoBehaviour
         LoadData();
         SetRandomWord();
         solutionWordText.gameObject.SetActive(false);
-        scoreText.gameObject.SetActive(false);
-        CS_Timer.StartTimer();
-        if(CS_Timer.infiniteMode)
+        
+        //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
+        if (CS_Timer.timerEnabled == true) //-cehinds
         {
-            scoreText.gameObject.SetActive(true);
-            score = 0;
-            scoreText.text = ("Score: " + score);
+            CS_Timer.StartTimer(); //original timer function call
         }
+        //-cheinds
+
+        score = 0;
+        scoreText.text = ("Score: " + score);
     }
 
     // Update is called once per frame
@@ -191,6 +204,7 @@ public class Board : MonoBehaviour
     {
         word = solutionWords[UnityEngine.Random.Range(0, solutionWords.Length)];
         word = word.ToLower().Trim();
+        scoreString = word;
     }
 
     public void SubmitRow()
@@ -228,6 +242,16 @@ public class Board : MonoBehaviour
 
                 // Set letter on lower keyboard to correct state
                 LetterToState(tile.tileChar, correctLetterState);
+
+                // Add score
+                if (scoreString[i] != ' ')
+                {
+                    scoreString = scoreString.Remove(i, 1);
+                    scoreString = scoreString.Insert(i, " ");
+                    score += correctLetterScore;
+                    scoreText.text = ("Score: " + score);
+                }
+                
             }            
             // solution word does not contain tile's letter at all
             else if(!word.Contains(tile.tileChar))
@@ -243,6 +267,7 @@ public class Board : MonoBehaviour
         {
             Tile tile = currentRow.tiles[i];
 
+            //If tile is not correct or incorrect
             if (tile.state != correctTileState && tile.state != incorrectTileState)
             {
                 // if remaining has the character but it is wrong spot
@@ -256,6 +281,10 @@ public class Board : MonoBehaviour
                     remaining = remaining.Insert(index, " ");
 
                     LetterToState(tile.tileChar, wrongSpotLetterState);
+
+                    // Add score
+                    score += wrongSpotLetterScore;
+                    scoreText.text = ("Score: " + score);
                 }
                 // if remaining does not have the character anymore
                 else
@@ -268,10 +297,10 @@ public class Board : MonoBehaviour
         // check if guess matches answer
         if (HasWon(currentRow))
         {
+            score += score * (row_count - rowIndex);
+            scoreText.text = ("Score: " + score);
             if (CS_Timer.infiniteMode)
             {
-                score++;
-                scoreText.text = ("Score: " + score);
                 CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
                 ClearBoard();
                 SetRandomWord();
@@ -326,6 +355,7 @@ public class Board : MonoBehaviour
             }
         }
         CS_Timer.StopTimer();
+        scoreText.text = ("Score: " + score);
         solutionWordText.gameObject.SetActive(true);
         solutionWordText.text = "Solution: " + word;
         enabled = false;
@@ -337,6 +367,8 @@ public class Board : MonoBehaviour
         SetRandomWord();
         CS_Timer.ResetTimer();
         CS_Timer.StartTimer();
+        score = 0;
+        scoreText.text = ("Score: " + score);
         enabled = true;
     }
 
@@ -371,5 +403,18 @@ public class Board : MonoBehaviour
                 break;
             }
         }
+    }
+
+    //added function to load game mode config. This sets the wordlength, the number of attempts, and changes CS_timer.inifiteMode and timerEnabled variables-cehinds 10 Nov 24
+    public void loadGameMode()
+    {
+        cs_gamemanager mode = CS_SaveSystem.loadMode();
+        word_size =mode.wordLength;
+        row_count = mode.attempts;
+        CS_Timer.infiniteMode = mode.infinite;
+        CS_Timer.timerEnabled = mode.timer;
+        
+
+
     }
 }
