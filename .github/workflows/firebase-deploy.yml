@@ -27,9 +27,14 @@ jobs:
           echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > "$HOME/serviceAccount.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/serviceAccount.json"
 
+      - name: Verify Service Account File
+        run: |
+          echo "Checking service account file:"
+          cat "$HOME/serviceAccount.json"
+        # This step confirms the JSON file was created and is accessible.
+        # Remove or comment out in production for security.
+
       - name: Deploy to Firebase
         env:
           GOOGLE_APPLICATION_CREDENTIALS: "$HOME/serviceAccount.json"
         run: firebase deploy --only hosting
-
-
