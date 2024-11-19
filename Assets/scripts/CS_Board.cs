@@ -408,7 +408,7 @@ public class Board : MonoBehaviour
     //added function to load game mode config. This sets the wordlength, the number of attempts, and changes CS_timer.inifiteMode and timerEnabled variables-cehinds 10 Nov 24
     public void loadGameMode()
     {
-        cs_gamemanager mode = CS_SaveSystem.loadMode();
+        cs_gameModeData mode = CS_SaveSystem.loadMode();
         word_size =mode.wordLength;
         row_count = mode.attempts;
         CS_Timer.infiniteMode = mode.infinite;

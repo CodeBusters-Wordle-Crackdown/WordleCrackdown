@@ -1,109 +1,83 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
 public class cs_mainmenu : MonoBehaviour
 {
-    public int wordLength =5;
+    public int wordLength = 5;
     public int attempts = 6;
     public bool timer = false;
     public bool infinite = false;
-    public void PlayGame() =>
 
-        //wordLength = 5;
-        //attempts = 6;
-        //timer = false;
-        //infinite = false;
-        //CS_SaveSystem.saveGameMode(this);
+    private void SaveAndLoadScene()
+    {
+        CS_SaveSystem.saveGameMode(this);
         SceneManager.LoadScene("WordleGameScene");
+    }
+
+    public void PlayGame()
+    {  
+        SetGameMode(5, 6, false, false);
+        SaveAndLoadScene();
+    }
 
     public void playClassic()
     {
-        wordLength = 5;
-        attempts = 6;
-        timer = false;
-        infinite = false;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(5, 6, false, false);
+        SaveAndLoadScene();
     }
 
     public void playArcade()
     {
-        wordLength = 5;
-        attempts = 6;
-        timer = false;
-        infinite = false;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(5, 6, false, false);
+        SaveAndLoadScene();
     }
 
     public void playTimed()
     {
-        wordLength = 5;
-        attempts = 6;
-        timer = true;
-        infinite = false;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
-
+        SetGameMode(5, 6, true, false);
+        SaveAndLoadScene();
     }
 
     public void playInfinite()
     {
-        wordLength = 5;
-        attempts = 6;
-        timer = true;
-        infinite = true;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(5, 6, true, true);
+        SaveAndLoadScene();
     }
 
     public void playEasy()
     {
-        wordLength = 4;
-        attempts = 8;
-        timer = true;
-        infinite = true;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(4, 8, true, true);
+        SaveAndLoadScene();
     }
 
     public void playNormal()
     {
-        wordLength = 5;
-        attempts = 6;
-        timer = true;
-        infinite = true;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(5, 6, true, true);
+        SaveAndLoadScene();
     }
 
     public void playChallenging()
     {
-        wordLength = 6;
-        attempts = 6;
-        timer = true;
-        infinite = true;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(6, 6, true, true);
+        SaveAndLoadScene();
     }
 
     public void playHard()
     {
-        wordLength = 7;
-        attempts = 6;
-        timer = true;
-        infinite = true;
-        CS_SaveSystem.saveGameMode(this);
-        SceneManager.LoadScene("WordleGameScene");
+        SetGameMode(7, 6, true, true);
+        SaveAndLoadScene();
     }
 
+    private void SetGameMode(int wordLen, int attemptCount, bool timerEnabled, bool infiniteMode)
+    {
+        wordLength = wordLen;
+        attempts = attemptCount;
+        timer = timerEnabled;
+        infinite = infiniteMode;
+    }
 
     public void QuitGame()
     {
         Application.Quit();
-    
     }
 }
