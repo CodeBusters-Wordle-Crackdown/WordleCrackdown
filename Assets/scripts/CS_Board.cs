@@ -116,28 +116,7 @@ public class Board : MonoBehaviour
         LoadData();
         SetRandomWord();
         solutionWordText.gameObject.SetActive(false);
-<<<<<<< HEAD
         CS_Timer.StartTimer();
-=======
-        
-        //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
-        if (CS_Timer.timerEnabled == true) //-cehinds
-        {
-            CS_Timer.toggleTimerMode(true); //if timer mode is active, a toggleTimerMode is called to enable timer text visibility 
-            Debug.Log("Timer mode enabled");
-
-            CS_Timer.StartTimer(); //original timer function call
-        }
-        else if (CS_Timer.timerEnabled == false) 
-        {
-            CS_Timer.toggleTimerMode(true); // if timer mode is NOT active, a toggleTimerMode is called to disable timer text visibility 
-            Debug.Log("Timer mode disabled");
-
-        }
-       
-        //-cheinds
-
->>>>>>> 6c4df8a867f3bedb38035ecfa9d5114c6927e06b
         score = 0;
         scoreText.text = ("Score: " + score);
     }
