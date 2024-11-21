@@ -1,5 +1,7 @@
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class cs_mainmenu : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class cs_mainmenu : MonoBehaviour
     public void PlayGame()
     {  
         SetGameMode(5, 6, false, false);
+    
         SaveAndLoadScene();
     }
 
@@ -46,7 +49,7 @@ public class cs_mainmenu : MonoBehaviour
 
     public void playEasy()
     {
-        SetGameMode(4, 8, true, true);
+        SetGameMode(4, 6, false, false);
         SaveAndLoadScene();
     }
 
@@ -64,7 +67,7 @@ public class cs_mainmenu : MonoBehaviour
 
     public void playHard()
     {
-        SetGameMode(7, 6, true, true);
+        SetGameMode(7, 4, true, true);
         SaveAndLoadScene();
     }
 

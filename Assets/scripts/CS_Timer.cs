@@ -57,6 +57,23 @@ public class CS_Timer : MonoBehaviour
 
     }
 
+    //added public function to enable/disable timer text --cehinds 20 Nov 2024
+    public void toggleTimerMode(bool timerToggle)
+    {
+        if (timerToggle == true)
+        {
+            timerText.gameObject.SetActive(true);
+            Debug.Log("Setting timer visibility set to: " + timerToggle);
+        }
+        else if (timerToggle == false)
+        {
+            timerText.gameObject.SetActive(false);
+            Debug.Log("Setting timer visibility set to: " + timerToggle);
+
+        }
+        
+    }
+
     public void RunTimer()
     {
         TimeSpan time;
