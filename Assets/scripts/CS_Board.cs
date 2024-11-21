@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -22,12 +23,13 @@ public class Board : MonoBehaviour
     private CS_Letters[] letters;
     private Row currentRow;
 
-    public int row_count;
-    public int word_size;
-
     private string[] validWords;
     private string[] solutionWords;
+    [SerializeField] // For debugging purposes
     private string word;
+
+    public int row_count;
+    public int word_size;
 
     private int rowIndex;
     private int columnIndex;
@@ -69,6 +71,9 @@ public class Board : MonoBehaviour
     // Keeps track of which letter has already been scored
     private string scoreString;
 
+    [Header("Achievements")]
+    public CS_Achievement CS_Achievement;
+    private int correctLettersGuessedInGuess; // for achievement
 
     // Setup and start game
     private void Start()
@@ -255,6 +260,9 @@ public class Board : MonoBehaviour
                 // Set tile on gameboard to correct state
                 tile.SetState(correctTileState);
 
+                // For achievement
+                correctLettersGuessedInGuess++;
+
                 // modify and remove the correct letter from the solution word
                 remaining = remaining.Remove(i, 1);
                 remaining = remaining.Insert(i, " ");
@@ -313,11 +321,17 @@ public class Board : MonoBehaviour
             }
         }
 
+        if(correctLettersGuessedInGuess >= 2)
+        {
+            CS_Achievement.UnlockAchievement("Two Birds");
+        }
+
         // check if guess matches answer
         if (HasWon(currentRow))
         {
             score += score * (row_count - rowIndex);
             scoreText.text = ("Score: " + score);
+            achievementCheck();
             if (CS_Timer.infiniteMode)
             {
                 CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
@@ -440,5 +454,23 @@ public class Board : MonoBehaviour
         Debug.Log("Gamemode initialization complete.");
 
 
+    }
+
+    private void achievementCheck()
+    {
+        float time = CS_Timer.timer;
+        int timeLimit = CS_Timer.timeLimit;
+
+        // Speed Demon
+        if (time <= 30)
+            CS_Achievement.UnlockAchievement("Speed Demon");
+
+        // Clutch
+        if (time >= timeLimit - 10)
+            CS_Achievement.UnlockAchievement("Clutch");
+
+        // One More Try
+        if (rowIndex == row_count)
+            CS_Achievement.UnlockAchievement("One More Try");
     }
 }
