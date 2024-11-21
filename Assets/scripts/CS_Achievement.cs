@@ -24,21 +24,29 @@ public class CS_Achievement : MonoBehaviour
     public bool clutch;
     [Tooltip("Correctly guess a word on the final attempt")]
     public bool oneMoreTry;
-    [Tooltip("Get two new correct letters in one guess")]
-    public bool twoBirds;
+    [Tooltip("Get three new correct letters in one guess")]
+    public bool threeBirds;
 
     public void UnlockAchievement(string name)
     {
         switch (name)
         {
             case "Speed Demon":
+                if (speedDemon)
+                    return;
                 speedDemon = true; break;
             case "Clutch":
+                if (clutch)
+                    return;
                 clutch = true; break;
             case "One More Try":
+                if (oneMoreTry)
+                    return;
                 oneMoreTry = true; break;
-            case "Two Birds":
-                twoBirds = true; break;
+            case "Three Birds":
+                if (threeBirds) 
+                    return;
+                threeBirds = true; break;
         }
         achievementUI.gameObject.SetActive(true);
         achievementUI.text = "Achievement Unlocked!\n" + name;

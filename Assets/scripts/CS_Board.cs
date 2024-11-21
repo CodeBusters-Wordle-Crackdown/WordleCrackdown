@@ -116,24 +116,7 @@ public class Board : MonoBehaviour
         LoadData();
         SetRandomWord();
         solutionWordText.gameObject.SetActive(false);
-        
-        //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
-        if (CS_Timer.timerEnabled == true) //-cehinds
-        {
-            CS_Timer.toggleTimerMode(true); //if timer mode is active, a toggleTimerMode is called to enable timer text visibility 
-            Debug.Log("Timer mode enabled");
-
-            CS_Timer.StartTimer(); //original timer function call
-        }
-        else if (CS_Timer.timerEnabled == false) 
-        {
-            CS_Timer.toggleTimerMode(true); // if timer mode is NOT active, a toggleTimerMode is called to disable timer text visibility 
-            Debug.Log("Timer mode disabled");
-
-        }
-       
-        //-cheinds
-
+        CS_Timer.StartTimer();
         score = 0;
         scoreText.text = ("Score: " + score);
     }
@@ -257,11 +240,16 @@ public class Board : MonoBehaviour
             // tile has correct letter
             if(tile.tileChar == word[i])
             {
+                // For three birds achievement
+                for (int j = 0; j < rowIndex + 1; j++)
+                {
+                    if (rows[j].tiles[i].state == correctTileState)
+                        break;
+                    correctLettersGuessedInGuess++;
+                }
+
                 // Set tile on gameboard to correct state
                 tile.SetState(correctTileState);
-
-                // For achievement
-                correctLettersGuessedInGuess++;
 
                 // modify and remove the correct letter from the solution word
                 remaining = remaining.Remove(i, 1);
@@ -278,7 +266,6 @@ public class Board : MonoBehaviour
                     score += correctLetterScore;
                     scoreText.text = ("Score: " + score);
                 }
-                
             }            
             // solution word does not contain tile's letter at all
             else if(!word.Contains(tile.tileChar))
@@ -321,10 +308,11 @@ public class Board : MonoBehaviour
             }
         }
 
-        if(correctLettersGuessedInGuess >= 2)
+        if(correctLettersGuessedInGuess >= 3)
         {
-            CS_Achievement.UnlockAchievement("Two Birds");
+            CS_Achievement.UnlockAchievement("Three Birds");
         }
+        correctLettersGuessedInGuess = 0;
 
         // check if guess matches answer
         if (HasWon(currentRow))
