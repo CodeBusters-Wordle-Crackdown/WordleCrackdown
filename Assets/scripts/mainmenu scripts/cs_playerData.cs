@@ -22,7 +22,7 @@ public class cs_playerData
         attempts = gameStats.row_count;
         timer = gameStats.timerMode;
         timeRemaining = gameStats.CS_Timer.timer;
-        //score = gameStats.getScore();
+        score = gameStats.getGameScore();
         difficulty = wordLength;
     }
 }

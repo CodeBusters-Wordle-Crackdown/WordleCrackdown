@@ -1,11 +1,16 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Firebase.Database;
+using System;
 
 public static class CS_SaveSystem 
 {
     public static string filePath = Application.persistentDataPath;
     public static string  fileName = "savedData.json";
+    public static cs_playerData loadedData; 
+    public static bool isDataLoaded = false; 
     
     
     public static void saveGameMode(cs_mainmenu mode)
@@ -42,16 +47,19 @@ public static class CS_SaveSystem
     public static void saveGameData(Board mode)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = filePath+fileName;
+        string path = filePath+"/"+fileName;
         FileStream stream = new FileStream(path, FileMode.Create);
         
         cs_playerData data = new cs_playerData(mode); // Create the saveddata json file
         formatter.Serialize(stream, data); // Serialize the data object, not the MonoBehaviour
         stream.Close();
 
+        pushToDB(data); //attempt to push game isntance data to data base
+
         Debug.Log("Saved data path: " + path);
     }
 
+    //loads and deserializes game instance data
     public static cs_playerData loadGameData()
     {
         string path = filePath+fileName;
@@ -62,6 +70,8 @@ public static class CS_SaveSystem
             
             cs_playerData data = formatter.Deserialize(stream) as cs_playerData; //change the data back inot a readable unity file
             stream.Close();
+            loadedData = data;
+            isDataLoaded = true;
             return data;
         }
         else
@@ -71,5 +81,33 @@ public static class CS_SaveSystem
         }
     }
 
-    
+
+    public static void printSavedData()
+    {
+        Debug.Log("Score" + loadedData.score);
+        //Debug.Log("Time Remaining" + loadedData.timeRemaining);
+        Debug.Log("Word length" + loadedData.wordLength);
+
+    }
+
+    //firebase implementatation
+    public static void pushToDB(cs_playerData data)
+    {
+       try
+       {
+            bool isDataSaved =false; 
+            Debug.Log("Attempting to load player data to server...");
+            //enter firebase scripts to push data to firebase here
+
+
+            if (isDataSaved)
+                Debug.Log("Player data saved");
+            else
+                Debug.Log("Failed to save player data");
+       }
+       catch (Exception e)
+       {
+        Debug.LogError("Failed to connect to server: " + e.Message);
+       }
+    }
 }

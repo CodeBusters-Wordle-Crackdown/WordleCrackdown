@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+//using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -476,6 +477,12 @@ public class Board : MonoBehaviour
         Debug.Log("Gamemode initialization complete.");
 
 
+    }
+
+    //returns game score --cehinds 20 Nov 24
+    public int getGameScore()
+    {
+        return score;
     }
 
     private void achievementCheck()
