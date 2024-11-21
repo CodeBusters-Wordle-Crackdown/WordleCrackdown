@@ -47,7 +47,7 @@ public static class CS_SaveSystem
     public static void saveGameData(Board mode)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = filePath+fileName;
+        string path = filePath+"/"+fileName;
         FileStream stream = new FileStream(path, FileMode.Create);
         
         cs_playerData data = new cs_playerData(mode); // Create the saveddata json file
