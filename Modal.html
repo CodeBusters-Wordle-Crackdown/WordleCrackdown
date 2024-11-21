@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draggable Modal with Login and Sign Up</title>
+    <title>Firebase Auth Modal</title>
     <style>
         /* Modal background */
         .modal-overlay {
@@ -27,7 +27,7 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            position: absolute; /* Changed to absolute for dragging */
+            position: absolute; /* For dragging */
             text-align: center;
             cursor: grab;
         }
@@ -50,7 +50,7 @@
         }
 
         /* Login form styles */
-        .login-form input[type="text"],
+        .login-form input[type="email"],
         .login-form input[type="password"] {
             width: 95%;
             padding: 10px;
@@ -89,7 +89,50 @@
         .sign-up-btn:hover {
             background-color: #1e87e5;
         }
+
+        /* Toggle between Login and Sign Up */
+        .toggle-btn {
+            background-color: transparent;
+            color: #2196F3;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        /* Error message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Success message */
+        .success-message {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body>
 
@@ -100,20 +143,23 @@
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-content" id="modalContent">
             <button class="close-btn" id="closeModalBtn">X</button>
-            <h2>Log In</h2>
-            <form class="login-form">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+            <h2 id="modalTitle">Log In</h2>
+            <form class="login-form" id="authForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="submit">Log In</button>
+                <button type="submit" id="submitBtn">Log In</button>
             </form>
 
-            <!-- Sign Up Button -->
-            <p>Don't have an account?</p>
-            <button class="sign-up-btn" id="signUpBtn">Sign Up</button>
+            <!-- Toggle between Login and Sign Up -->
+            <p id="toggleText">Don't have an account?</p>
+            <button class="toggle-btn" id="toggleAuth">Sign Up</button>
+
+            <!-- Error and Success Messages -->
+            <div id="message" class="error-message"></div>
         </div>
     </div>
 
@@ -123,17 +169,66 @@
         const modalContent = document.getElementById("modalContent");
         const openModalBtn = document.getElementById("openModalBtn");
         const closeModalBtn = document.getElementById("closeModalBtn");
-        const signUpBtn = document.getElementById("signUpBtn");
+        const toggleAuthBtn = document.getElementById("toggleAuth");
+        const modalTitle = document.getElementById("modalTitle");
+        const submitBtn = document.getElementById("submitBtn");
+        const toggleText = document.getElementById("toggleText");
+        const authForm = document.getElementById("authForm");
+        const messageDiv = document.getElementById("message");
+
+        let isLogin = true; // Flag to toggle between login and sign up
 
         // Function to open the modal
         function openModal() {
             modalOverlay.style.display = "flex";
+            resetForm();
         }
 
         // Function to close the modal
         function closeModal() {
             modalOverlay.style.display = "none";
+            resetForm();
         }
+
+        // Reset form and messages
+        function resetForm() {
+            authForm.reset();
+            messageDiv.textContent = "";
+            if (!isLogin) {
+                switchToLogin();
+            }
+        }
+
+        // Switch to Login view
+        function switchToLogin() {
+            isLogin = true;
+            modalTitle.textContent = "Log In";
+            submitBtn.textContent = "Log In";
+            toggleText.textContent = "Don't have an account?";
+            toggleAuthBtn.textContent = "Sign Up";
+            messageDiv.textContent = "";
+            messageDiv.className = "error-message";
+        }
+
+        // Switch to Sign Up view
+        function switchToSignUp() {
+            isLogin = false;
+            modalTitle.textContent = "Sign Up";
+            submitBtn.textContent = "Sign Up";
+            toggleText.textContent = "Already have an account?";
+            toggleAuthBtn.textContent = "Log In";
+            messageDiv.textContent = "";
+            messageDiv.className = "error-message";
+        }
+
+        // Toggle between Login and Sign Up
+        toggleAuthBtn.addEventListener("click", () => {
+            if (isLogin) {
+                switchToSignUp();
+            } else {
+                switchToLogin();
+            }
+        });
 
         // Open modal when the button is clicked
         openModalBtn.addEventListener("click", openModal);
@@ -148,30 +243,91 @@
             }
         });
 
-        // Sign Up button action
-        signUpBtn.addEventListener("click", () => {
-            alert("Sign Up functionality coming soon!");
-        });
-
         // Draggable modal logic
         let isDragging = false;
         let offsetX, offsetY;
 
         modalContent.addEventListener("mousedown", (event) => {
-            isDragging = true;
-            offsetX = event.clientX - modalContent.offsetLeft;
-            offsetY = event.clientY - modalContent.offsetTop;
+            // Only initiate drag if clicking on the modal title or form area, not on buttons or inputs
+            if (event.target === modalContent || event.target.tagName === "H2") {
+                isDragging = true;
+                offsetX = event.clientX - modalContent.offsetLeft;
+                offsetY = event.clientY - modalContent.offsetTop;
+                modalContent.style.cursor = "grabbing";
+            }
         });
 
         document.addEventListener("mousemove", (event) => {
             if (isDragging) {
-                modalContent.style.left = `${event.clientX - offsetX}px`;
-                modalContent.style.top = `${event.clientY - offsetY}px`;
+                let newLeft = event.clientX - offsetX;
+                let newTop = event.clientY - offsetY;
+
+                // Prevent the modal from moving outside the viewport
+                const maxLeft = window.innerWidth - modalContent.offsetWidth;
+                const maxTop = window.innerHeight - modalContent.offsetHeight;
+
+                if (newLeft < 0) newLeft = 0;
+                if (newTop < 0) newTop = 0;
+                if (newLeft > maxLeft) newLeft = maxLeft;
+                if (newTop > maxTop) newTop = maxTop;
+
+                modalContent.style.left = `${newLeft}px`;
+                modalContent.style.top = `${newTop}px`;
             }
         });
 
         document.addEventListener("mouseup", () => {
-            isDragging = false;
+            if (isDragging) {
+                isDragging = false;
+                modalContent.style.cursor = "grab";
+            }
+        });
+
+        // Handle form submission
+        authForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent form from submitting normally
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (isLogin) {
+                // Log In
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed in
+                        const user = userCredential.user;
+                        messageDiv.textContent = "Login successful!";
+                        messageDiv.className = "success-message";
+                        // Optionally, close the modal or redirect the user
+                        setTimeout(() => {
+                            closeModal();
+                            // Redirect or perform other actions
+                            console.log('User logged in:', user.email);
+                        }, 1500);
+                    })
+                    .catch((error) => {
+                        messageDiv.textContent = error.message;
+                        messageDiv.className = "error-message";
+                    });
+            } else {
+                // Sign Up
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed up
+                        const user = userCredential.user;
+                        messageDiv.textContent = "Registration successful!";
+                        messageDiv.className = "success-message";
+                        // Optionally, close the modal or prompt user to log in
+                        setTimeout(() => {
+                            closeModal();
+                            // Redirect or perform other actions
+                            console.log('User registered:', user.email);
+                        }, 1500);
+                    })
+                    .catch((error) => {
+                        messageDiv.textContent = error.message;
+                        messageDiv.className = "error-message";
+                    });
+            }
         });
     </script>
 </body>
