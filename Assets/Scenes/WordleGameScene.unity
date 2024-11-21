@@ -2593,7 +2593,6 @@ MonoBehaviour:
   speedDemon: 0
   clutch: 0
   oneMoreTry: 0
-  balancedDiet: 0
   twoBirds: 0
 --- !u!1 &717491315
 GameObject:
