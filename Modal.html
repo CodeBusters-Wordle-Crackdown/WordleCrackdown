@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Modal with Login and Sign Up</title>
+    <title>Draggable Modal with Login and Sign Up</title>
     <style>
         /* Modal background */
         .modal-overlay {
@@ -27,8 +27,13 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
+            position: absolute; /* Changed to absolute for dragging */
             text-align: center;
+            cursor: grab;
+        }
+
+        .modal-content:active {
+            cursor: grabbing;
         }
 
         /* Close button */
@@ -66,9 +71,9 @@
             margin-bottom: 10px;
         }
 
-            .login-form button:hover {
-                background-color: #45a049;
-            }
+        .login-form button:hover {
+            background-color: #45a049;
+        }
 
         /* Sign Up button */
         .sign-up-btn {
@@ -81,9 +86,9 @@
             font-size: 16px;
         }
 
-            .sign-up-btn:hover {
-                background-color: #1e87e5;
-            }
+        .sign-up-btn:hover {
+            background-color: #1e87e5;
+        }
     </style>
 </head>
 <body>
@@ -93,7 +98,7 @@
 
     <!-- Modal structure -->
     <div id="modalOverlay" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content" id="modalContent">
             <button class="close-btn" id="closeModalBtn">X</button>
             <h2>Log In</h2>
             <form class="login-form">
@@ -113,8 +118,9 @@
     </div>
 
     <script>
-        // Get the modal, open button, close button, and sign up button
+        // Get elements
         const modalOverlay = document.getElementById("modalOverlay");
+        const modalContent = document.getElementById("modalContent");
         const openModalBtn = document.getElementById("openModalBtn");
         const closeModalBtn = document.getElementById("closeModalBtn");
         const signUpBtn = document.getElementById("signUpBtn");
@@ -145,6 +151,27 @@
         // Sign Up button action
         signUpBtn.addEventListener("click", () => {
             alert("Sign Up functionality coming soon!");
+        });
+
+        // Draggable modal logic
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        modalContent.addEventListener("mousedown", (event) => {
+            isDragging = true;
+            offsetX = event.clientX - modalContent.offsetLeft;
+            offsetY = event.clientY - modalContent.offsetTop;
+        });
+
+        document.addEventListener("mousemove", (event) => {
+            if (isDragging) {
+                modalContent.style.left = `${event.clientX - offsetX}px`;
+                modalContent.style.top = `${event.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
         });
     </script>
 </body>
