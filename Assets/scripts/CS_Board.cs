@@ -78,6 +78,7 @@ public class Board : MonoBehaviour
     [Header("Sound Effects")]
     public AudioSource audioSource;
     public AudioClip[] typeSFX;
+    public AudioClip invalidWordSFX;
     public float typePitch;
     public float submitPitch;
     public float backspacePitch;
@@ -248,6 +249,9 @@ public class Board : MonoBehaviour
         {
             invalidWordText.transform.position = new Vector2(invalidWordText.transform.position.x, currentRow.transform.position.y);
             invalidWordText.SetActive(true);
+            audioSource.clip = invalidWordSFX;
+            audioSource.pitch = 1;
+            audioSource.Play();
             return;
         }
 
