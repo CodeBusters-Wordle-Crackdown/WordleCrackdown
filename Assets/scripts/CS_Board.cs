@@ -73,9 +73,18 @@ public class Board : MonoBehaviour
     // Setup and start game
     private void Start()
     {
-        //loadGameMode data --cehinds 10 Nov 24
-        
-        //loadGameMode();
+        //add try block to load game mode feature --cehinds 20 Nov 24
+        try
+        {   
+            //loadGameMode data --cehinds 10 Nov 24
+            loadGameMode();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Failed to load game mode data: "+ e.Message);
+            Debug.Log("Restoring game mode to default configuration");
+        }
+        ///
 
         //build dynamic gameboard
         GameObject rowPrefab = GetComponentInChildren<Row>().gameObject;
@@ -106,8 +115,18 @@ public class Board : MonoBehaviour
         //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
         if (CS_Timer.timerEnabled == true) //-cehinds
         {
+            CS_Timer.toggleTimerMode(true); //if timer mode is active, a toggleTimerMode is called to enable timer text visibility 
+            Debug.Log("Timer mode enabled");
+
             CS_Timer.StartTimer(); //original timer function call
         }
+        else if (CS_Timer.timerEnabled == false) 
+        {
+            CS_Timer.toggleTimerMode(true); // if timer mode is NOT active, a toggleTimerMode is called to disable timer text visibility 
+            Debug.Log("Timer mode disabled");
+
+        }
+       
         //-cheinds
 
         score = 0;
@@ -408,12 +427,17 @@ public class Board : MonoBehaviour
     //added function to load game mode config. This sets the wordlength, the number of attempts, and changes CS_timer.inifiteMode and timerEnabled variables-cehinds 10 Nov 24
     public void loadGameMode()
     {
+        Debug.Log("Initializing Gamemode...");
         cs_gameModeData mode = CS_SaveSystem.loadMode();
         word_size =mode.wordLength;
+        Debug.Log("word size initialized to : "+word_size);
         row_count = mode.attempts;
+        Debug.Log("row count initialized to : "+row_count);
         CS_Timer.infiniteMode = mode.infinite;
+        Debug.Log("infinite mode: "+CS_Timer.infiniteMode);
         CS_Timer.timerEnabled = mode.timer;
-        
+        Debug.Log("timer mode: "+CS_Timer.timerEnabled);
+        Debug.Log("Gamemode initialization complete.");
 
 
     }

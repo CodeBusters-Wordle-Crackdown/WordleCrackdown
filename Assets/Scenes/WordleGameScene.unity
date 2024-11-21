@@ -6497,6 +6497,10 @@ PrefabInstance:
       propertyPath: m_ChildForceExpandHeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5472942613725340028, guid: 0e57ee83416d9464c9e470d0da5bb358, type: 3}
+      propertyPath: <tileChar>k__BackingField
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 6456284396069630353, guid: 0e57ee83416d9464c9e470d0da5bb358, type: 3}
       propertyPath: m_IsActive
       value: 1
