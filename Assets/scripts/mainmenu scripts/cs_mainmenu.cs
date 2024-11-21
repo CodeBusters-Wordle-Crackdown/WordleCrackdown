@@ -65,6 +65,12 @@ public class cs_mainmenu : MonoBehaviour
         SaveAndLoadScene();
     }
 
+     public void playTimer()
+    {
+        SetGameMode(5, 5, true, false);
+        SaveAndLoadScene();
+    }
+
     public void playHard()
     {
         SetGameMode(7, 4, true, true);
