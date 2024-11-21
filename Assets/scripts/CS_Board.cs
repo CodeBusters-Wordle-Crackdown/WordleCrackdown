@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -74,6 +73,17 @@ public class Board : MonoBehaviour
     [Header("Achievements")]
     public CS_Achievement CS_Achievement;
     private int correctLettersGuessedInGuess; // for achievement
+
+    [Header("Sound Effects")]
+    public AudioSource audioSource;
+    public AudioClip[] typeSFX;
+    public float typePitch;
+    public float submitPitch;
+    public float backspacePitch;
+    public AudioSource correctGuessSFX;
+
+    [Header("Particle Effects")]
+    public GameObject correctGuessPrefab;
 
     // Setup and start game
     private void Start()
@@ -158,6 +168,11 @@ public class Board : MonoBehaviour
         // Receive the first character of input as a char
         currentRow.tiles[columnIndex].SetLetter(input.ToLower()[0]);
         columnIndex++;
+
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = typePitch;
+        audioSource.Play();
     }
     
     public void BackspaceChar()
@@ -166,6 +181,11 @@ public class Board : MonoBehaviour
         currentRow.tiles[columnIndex].SetLetter('\0');
         currentRow.tiles[columnIndex].SetState(emptyTileState);
         invalidWordText.SetActive(false);
+
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = backspacePitch;
+        audioSource.Play();
     }
 
     private void LoadData()
@@ -230,6 +250,11 @@ public class Board : MonoBehaviour
             return;
         }
 
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = submitPitch;
+        audioSource.Play();
+
         // Solution word that gets modified as letters are guessed in order to avoid duplicates
         string remaining = word;
 
@@ -240,12 +265,18 @@ public class Board : MonoBehaviour
             // tile has correct letter
             if(tile.tileChar == word[i])
             {
-                // For three birds achievement
-                for (int j = 0; j < rowIndex + 1; j++)
+                // Is this the first time this column has been guessed correctly
+                if (FirstTimeCorrectGuess(i))
                 {
-                    if (rows[j].tiles[i].state == correctTileState)
-                        break;
+                    // For three birds achievement
                     correctLettersGuessedInGuess++;
+
+                    correctGuessSFX.Play();
+
+                    ParticleSystem correctGuessFX = Instantiate(correctGuessPrefab).GetComponent<ParticleSystem>();
+                    correctGuessFX.gameObject.transform.position = tile.transform.position;
+                    correctGuessFX.Play();
+                    
                 }
 
                 // Set tile on gameboard to correct state
@@ -310,7 +341,7 @@ public class Board : MonoBehaviour
 
         if(correctLettersGuessedInGuess >= 3)
         {
-            CS_Achievement.UnlockAchievement("Three Birds");
+            CS_Achievement.UnlockAchievement("Three Birds One Stone");
         }
         correctLettersGuessedInGuess = 0;
 
@@ -451,17 +482,30 @@ public class Board : MonoBehaviour
     {
         float time = CS_Timer.timer;
         int timeLimit = CS_Timer.timeLimit;
+        bool timedMode = CS_Timer.timerEnabled;
 
         // Speed Demon
         if (time <= 30)
             CS_Achievement.UnlockAchievement("Speed Demon");
 
         // Clutch
-        if (time >= timeLimit - 10)
+        if (timedMode && time >= timeLimit - 10)
             CS_Achievement.UnlockAchievement("Clutch");
 
         // One More Try
         if (rowIndex == row_count)
             CS_Achievement.UnlockAchievement("One More Try");
+    }
+
+    private bool FirstTimeCorrectGuess(int columnIndex)
+    {
+        for (int j = 0; j < rowIndex + 1; j++)
+        {
+            if (rows[j].tiles[columnIndex].state == correctTileState)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

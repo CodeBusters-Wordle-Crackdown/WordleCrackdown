@@ -27,6 +27,12 @@ public class CS_Achievement : MonoBehaviour
     [Tooltip("Get three new correct letters in one guess")]
     public bool threeBirds;
 
+    [Header("SFX")]
+    public AudioSource achievementAudioSource;
+
+    [Header("FX")]
+    public GameObject achievementParticlesPrefab;
+
     public void UnlockAchievement(string name)
     {
         switch (name)
@@ -43,11 +49,17 @@ public class CS_Achievement : MonoBehaviour
                 if (oneMoreTry)
                     return;
                 oneMoreTry = true; break;
-            case "Three Birds":
+            case "Three Birds One Stone":
                 if (threeBirds) 
                     return;
                 threeBirds = true; break;
         }
+        //FX
+        achievementAudioSource.Play();
+        GameObject achievementVFX = Instantiate(achievementParticlesPrefab);
+        achievementVFX.transform.position = gameObject.transform.position;
+
+        //Function
         achievementUI.gameObject.SetActive(true);
         achievementUI.text = "Achievement Unlocked!\n" + name;
     }
