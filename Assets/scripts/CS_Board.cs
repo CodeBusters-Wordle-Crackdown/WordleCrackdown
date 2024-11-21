@@ -459,6 +459,12 @@ public class Board : MonoBehaviour
 
     }
 
+    //returns game score --cehinds 20 Nov 24
+    public int getGameScore()
+    {
+        return score;
+    }
+
     private void achievementCheck()
     {
         float time = CS_Timer.timer;
