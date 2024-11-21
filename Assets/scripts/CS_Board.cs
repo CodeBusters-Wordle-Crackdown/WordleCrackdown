@@ -392,6 +392,9 @@ public class Board : MonoBehaviour
         solutionWordText.gameObject.SetActive(true);
         solutionWordText.text = "Solution: " + word;
         enabled = false;
+        
+        //added save game data
+        CS_SaveSystem.saveGameData(this);
     }
 
     public void NewGame()
