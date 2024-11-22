@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+//using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -22,12 +23,13 @@ public class Board : MonoBehaviour
     private CS_Letters[] letters;
     private Row currentRow;
 
-    public int row_count;
-    public int word_size;
-
     private string[] validWords;
     private string[] solutionWords;
+    [SerializeField] // For debugging purposes
     private string word;
+
+    public int row_count;
+    public int word_size;
 
     private int rowIndex;
     private int columnIndex;
@@ -69,6 +71,21 @@ public class Board : MonoBehaviour
     // Keeps track of which letter has already been scored
     private string scoreString;
 
+    [Header("Achievements")]
+    public CS_Achievement CS_Achievement;
+    private int correctLettersGuessedInGuess; // for achievement
+
+    [Header("Sound Effects")]
+    public AudioSource audioSource;
+    public AudioClip[] typeSFX;
+    public AudioClip invalidWordSFX;
+    public float typePitch;
+    public float submitPitch;
+    public float backspacePitch;
+    public AudioSource correctGuessSFX;
+
+    [Header("Particle Effects")]
+    public GameObject correctGuessPrefab;
 
     // Setup and start game
     private void Start()
@@ -111,24 +128,7 @@ public class Board : MonoBehaviour
         LoadData();
         SetRandomWord();
         solutionWordText.gameObject.SetActive(false);
-        
-        //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
-        if (CS_Timer.timerEnabled == true) //-cehinds
-        {
-            CS_Timer.toggleTimerMode(true); //if timer mode is active, a toggleTimerMode is called to enable timer text visibility 
-            Debug.Log("Timer mode enabled");
-
-            CS_Timer.StartTimer(); //original timer function call
-        }
-        else if (CS_Timer.timerEnabled == false) 
-        {
-            CS_Timer.toggleTimerMode(true); // if timer mode is NOT active, a toggleTimerMode is called to disable timer text visibility 
-            Debug.Log("Timer mode disabled");
-
-        }
-       
-        //-cheinds
-
+        CS_Timer.StartTimer();
         score = 0;
         scoreText.text = ("Score: " + score);
     }
@@ -170,6 +170,11 @@ public class Board : MonoBehaviour
         // Receive the first character of input as a char
         currentRow.tiles[columnIndex].SetLetter(input.ToLower()[0]);
         columnIndex++;
+
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = typePitch;
+        audioSource.Play();
     }
     
     public void BackspaceChar()
@@ -178,6 +183,11 @@ public class Board : MonoBehaviour
         currentRow.tiles[columnIndex].SetLetter('\0');
         currentRow.tiles[columnIndex].SetState(emptyTileState);
         invalidWordText.SetActive(false);
+
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = backspacePitch;
+        audioSource.Play();
     }
 
     private void LoadData()
@@ -239,8 +249,16 @@ public class Board : MonoBehaviour
         {
             invalidWordText.transform.position = new Vector2(invalidWordText.transform.position.x, currentRow.transform.position.y);
             invalidWordText.SetActive(true);
+            audioSource.clip = invalidWordSFX;
+            audioSource.pitch = 1;
+            audioSource.Play();
             return;
         }
+
+        // Type Sound effect
+        audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];
+        audioSource.pitch = submitPitch;
+        audioSource.Play();
 
         // Solution word that gets modified as letters are guessed in order to avoid duplicates
         string remaining = word;
@@ -252,6 +270,20 @@ public class Board : MonoBehaviour
             // tile has correct letter
             if(tile.tileChar == word[i])
             {
+                // Is this the first time this column has been guessed correctly
+                if (FirstTimeCorrectGuess(i))
+                {
+                    // For three birds achievement
+                    correctLettersGuessedInGuess++;
+
+                    correctGuessSFX.Play();
+
+                    ParticleSystem correctGuessFX = Instantiate(correctGuessPrefab).GetComponent<ParticleSystem>();
+                    correctGuessFX.gameObject.transform.position = tile.transform.position;
+                    correctGuessFX.Play();
+                    
+                }
+
                 // Set tile on gameboard to correct state
                 tile.SetState(correctTileState);
 
@@ -270,7 +302,6 @@ public class Board : MonoBehaviour
                     score += correctLetterScore;
                     scoreText.text = ("Score: " + score);
                 }
-                
             }            
             // solution word does not contain tile's letter at all
             else if(!word.Contains(tile.tileChar))
@@ -313,11 +344,18 @@ public class Board : MonoBehaviour
             }
         }
 
+        if(correctLettersGuessedInGuess >= 3)
+        {
+            CS_Achievement.UnlockAchievement("Three Birds One Stone");
+        }
+        correctLettersGuessedInGuess = 0;
+
         // check if guess matches answer
         if (HasWon(currentRow))
         {
             score += score * (row_count - rowIndex);
             scoreText.text = ("Score: " + score);
+            achievementCheck();
             if (CS_Timer.infiniteMode)
             {
                 CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
@@ -378,6 +416,9 @@ public class Board : MonoBehaviour
         solutionWordText.gameObject.SetActive(true);
         solutionWordText.text = "Solution: " + word;
         enabled = false;
+        
+        //added save game data
+        CS_SaveSystem.saveGameData(this);
     }
 
     public void NewGame()
@@ -440,5 +481,42 @@ public class Board : MonoBehaviour
         Debug.Log("Gamemode initialization complete.");
 
 
+    }
+
+    //returns game score --cehinds 20 Nov 24
+    public int getGameScore()
+    {
+        return score;
+    }
+
+    private void achievementCheck()
+    {
+        float time = CS_Timer.timer;
+        int timeLimit = CS_Timer.timeLimit;
+        bool timedMode = CS_Timer.timerEnabled;
+
+        // Speed Demon
+        if (time <= 30)
+            CS_Achievement.UnlockAchievement("Speed Demon");
+
+        // Clutch
+        if (timedMode && time >= timeLimit - 10)
+            CS_Achievement.UnlockAchievement("Clutch");
+
+        // One More Try
+        if (rowIndex == row_count)
+            CS_Achievement.UnlockAchievement("One More Try");
+    }
+
+    private bool FirstTimeCorrectGuess(int columnIndex)
+    {
+        for (int j = 0; j < rowIndex + 1; j++)
+        {
+            if (rows[j].tiles[columnIndex].state == correctTileState)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
