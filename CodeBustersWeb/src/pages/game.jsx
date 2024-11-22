@@ -3,10 +3,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Game() {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "/unity/build/CodeBustersWeb.loader.js", // Correct Unity paths
-    dataUrl: "/unity/build/CodeBustersWeb.data",
-    frameworkUrl: "/unity/build/CodeBustersWeb.framework.js",
-    codeUrl: "/unity/build/CodeBustersWeb.wasm",
+    loaderUrl: "/unity/Build/CodeBustersWeb.loader.js", // Correct Unity paths
+    dataUrl: "/unity/Build/CodeBustersWeb.data",
+    frameworkUrl: "/unity/Build/CodeBustersWeb.framework.js",
+    codeUrl: "/unity/Build/CodeBustersWeb.wasm",
   });
 
   return (
