@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/home"; // Matches the actual file name "home.jsx"
 import Game from "./pages/Game";
 
 function App() {
