@@ -1096,6 +1096,7 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
     - Assets/Resources/images
+    - Assets/scripts/mainmenu scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Resources/images
+  - Assets/scripts/mainmenu scripts
   m_LastFoldersGridSize: 64
   m_LastProjectPath: H:\Constantine\Work\gamedev\unity\wordClone\WordleCrackdown\WordleCrackdown
   m_LockTracker:
