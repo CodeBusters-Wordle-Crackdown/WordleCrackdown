@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Firebase.Database;
+//using Firebase.Database;
 using System;
 
 public static class CS_SaveSystem 
