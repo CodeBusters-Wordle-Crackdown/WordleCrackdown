@@ -14,26 +14,29 @@ function Game() {
 
     return (
 
-        <div id="GameSection">
+        <div>
             <Header />
+            <div id="GameSection">
 
-            {!isLoaded && (
-                <p>Loading Application... {Math.round(loadingProgression * 100)}%</p>
-            )}
-            <Unity
+                {!isLoaded && (
+                    <p>Loading Application... {Math.round(loadingProgression * 100)}%</p>
+                )}
+                <Unity
 
-                unityProvider={unityProvider}
-                style={{
-                    visibility: isLoaded ? "visible" : "hidden",
-                    width: "80%",
-                    height: "100%",
-                    justifySelf: "center",
-                    alignSelf: "center"
-                }}
-            />
-
+                    unityProvider={unityProvider}
+                    style={{
+                        visibility: isLoaded ? "visible" : "hidden",
+                        width: "75%",
+                        height: "84vh",
+                        justifySelf: "center",
+                        alignSelf: "center"
+                    }}
+                />
+            </div>
             <Footer />
         </div>
+
+
     );
 }
 

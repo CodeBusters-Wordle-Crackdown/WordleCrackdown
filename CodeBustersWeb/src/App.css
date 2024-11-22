@@ -86,7 +86,6 @@ li a:hover {
 }
 
 .nav-container {
-  position: sticky;
   top: 0px;
   z-index: 10;
   display: flex;
@@ -113,15 +112,9 @@ li a:hover {
 
 #GameSection {
   background-color: #242424;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
-}
-
-
-#Layer2 {
-  background-color: #000000;
 }
 
 .mclaren-regular {
@@ -134,19 +127,213 @@ li a:hover {
   height: 500px;
 }
 
-.Par {
+.content {
   background-color: #000000;
-}
+  padding: 30px;
 
+}
 
 #artback {
   background-image: url(./images/wordleAnimation.gif);
 }
 
+/*-----------------------------------About Page Styles-----------------------------------*/
+
+.WordleDescription {
+  padding: 30px;
+}
+
+.WordleDescription h1 {
+  justify-content: center;
+}
+
+#AbContainer {
+  background-color: #242424;
+}
+
+.gridAboutContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 20px;
+}
+
+.gridAboutContainer2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 20px;
+}
+
+.img {
+  grid-row: span 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgL {
+  grid-row-start: 1;
+  grid-row-end: -1;
+  grid-column-start: 4;
+  grid-column-end: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+}
+
+.MemberImg {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.title {
+  grid-column: span 3;
+  padding-top: 25px;
+}
+
+.titleL {
+  grid-column-start: 1;
+  grid-column-end: -2;
+  display: flex;
+  justify-content: right;
+  padding-top: 25px;
+}
+
+.description {
+  grid-column: span 3;
+}
+
+.descriptionL {
+  grid-column: span 3;
+  justify-self: right;
+  text-align: right;
+}
+
+.socials {
+  grid-column: span 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.socialsL {
+  grid-column-start: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  order: 6;
+}
+
+.Simg {
+  background-color: aliceblue;
+  border-radius: 25%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/*-----------------------------------News Page Styles-----------------------------------*/
+
+.PostContainer {
+  background-color: #242424;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+
+.PostNavbar {
+  background-color: #242424;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 30px;
+  padding: 20px;
+  height: 100px;
+}
+
+.PostButton {
+  height: 50px;
+  width: 200px;
+}
+
+.Box {
+  grid-column: span 4;
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr;
+  background-color: rgb(249, 255, 249);
+  border: white;
+  color: #000;
+  padding: 30px;
+}
+
+.Box:hover {
+  box-shadow: 50px;
+  border-width: 50px;
+  border: rgb(255, 196, 0);
+
+}
+
+.PostCapture {
+  grid-column: span 1;
+  grid-row: span 3;
+  display: flex;
+  align-items: center;
+}
+
+.PostImg {
+  width: 175px;
+  height: 175px;
+  border-radius: 10%;
+  object-fit: cover;
+}
+
+.PostTitle {
+  grid-column: span 3;
+  grid-row: span 1;
+}
+
+.PostDescription {
+  grid-column: span 3;
+}
+
+.PostDate {
+  grid-column-start: 4;
+  grid-column-end: -1;
+  display: flex;
+  justify-content: right;
+  align-items: end;
+}
+
+
 /*-----------------------------------Footer Styling-----------------------------------*/
 
-#footer {
+.footerContainer {
   background-color: #787c7f;
+  padding-top: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 40px;
+}
+
+.grid-footerContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+#UAALogo {
+  width: 300px;
 }
 
 footer {

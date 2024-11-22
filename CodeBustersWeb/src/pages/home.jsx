@@ -7,15 +7,13 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 function Home() {
     return (
         <div>
-
-            {/*Parallax Effect*/}
-            <Parallax pages={1.2} style={{ top: '0', left: '0' }} className="animation">
-
-                <ParallaxLayer offset={0} speed={0.1}>
-                    <Header />
-                    <div className='animation_lp' id='artback'></div>
-                    <ParallaxLayer offset={0.8} speed={1}>
-                        <div className='Par' id='Layer2'>
+            <Header />
+            <div className='animation_lp' id='artback'></div>
+            <div class="bodyContainer">
+                {/*Parallax Effect*/}
+                <Parallax pages={1} style={{ top: '100', left: '0' }} className="animation">
+                    <ParallaxLayer offset={0.2} speed={3}> {/*TODO Break Parallax, because either whole page needs to be parallax or shouldn't be done*/}
+                        <div className='content' id='Layer2'>
                             <h1>Lorem ipsum</h1> <br />
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
                                 et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
@@ -28,10 +26,13 @@ function Home() {
                                 curae; Phasellus lorem ipsum, aliquam vitae viverra sagittis, eleifend id augue.
                             </p>
                         </div>
-                        <Footer />
                     </ParallaxLayer>
-                </ParallaxLayer>
-            </Parallax>
+                </Parallax>
+            </div>
+            <div>
+                <Footer />
+            </div>
+
 
         </div>
     );

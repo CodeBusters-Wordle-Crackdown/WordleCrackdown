@@ -18,11 +18,11 @@ if (currentTime >= 6 && currentTime < 12) {
 }
 else if (currentTime > 12 && currentTime < 18) {
     greeting = "Welcome, midtime wordler!"
-    customStyle = "orange";
+    customStyle.color = "orange";
 }
 else {
     greeting = "Welcome, night owl wordler!"
-    customStyle = "purple";
+    customStyle.color = "purple";
 }
 
 function Header() {
@@ -33,7 +33,7 @@ function Header() {
                 <ul className="nav-links">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
-                    <li><Link to="/blog">Blog</Link></li>
+                    <li><Link to="/News">News</Link></li>
                     <li><Link to="/game">Game</Link></li>
                 </ul>
                 <section id="login"><Link to="/login">Sign-in</Link><button><Link to="/game">Play</Link></button></section>
