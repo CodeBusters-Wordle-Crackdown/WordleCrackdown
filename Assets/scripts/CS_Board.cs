@@ -56,6 +56,7 @@ public class Board : MonoBehaviour
     public GameObject newGameButton;
 
     [Header("Timer")]
+    public bool timerMode = false;
     public CS_Timer CS_Timer;
 
     [Header("Score")]
@@ -72,6 +73,10 @@ public class Board : MonoBehaviour
     // Setup and start game
     private void Start()
     {
+        //loadGameMode data --cehinds 10 Nov 24
+        
+        //loadGameMode();
+
         //build dynamic gameboard
         GameObject rowPrefab = GetComponentInChildren<Row>().gameObject;
 
@@ -97,7 +102,14 @@ public class Board : MonoBehaviour
         LoadData();
         SetRandomWord();
         solutionWordText.gameObject.SetActive(false);
-        CS_Timer.StartTimer();
+        
+        //Modified section to check if timerMode is active before starting the Timer function--cehinds 10 Nov 24
+        if (CS_Timer.timerEnabled == true) //-cehinds
+        {
+            CS_Timer.StartTimer(); //original timer function call
+        }
+        //-cheinds
+
         score = 0;
         scoreText.text = ("Score: " + score);
     }
@@ -391,5 +403,18 @@ public class Board : MonoBehaviour
                 break;
             }
         }
+    }
+
+    //added function to load game mode config. This sets the wordlength, the number of attempts, and changes CS_timer.inifiteMode and timerEnabled variables-cehinds 10 Nov 24
+    public void loadGameMode()
+    {
+        cs_gamemanager mode = CS_SaveSystem.loadMode();
+        word_size =mode.wordLength;
+        row_count = mode.attempts;
+        CS_Timer.infiniteMode = mode.infinite;
+        CS_Timer.timerEnabled = mode.timer;
+        
+
+
     }
 }
