@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 83
+  controlID: 95
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -640,9 +640,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 452.63657, y: 529.9798, z: -4.599874}
+    m_Target: {x: 458.14517, y: 386.32996, z: -8.901315}
     speed: 2
-    m_Value: {x: 452.63657, y: 529.9798, z: -4.599874}
+    m_Value: {x: 458.14517, y: 386.32996, z: -8.901315}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -692,9 +692,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 608.1687
+    m_Target: 949.6986
     speed: 2
-    m_Value: 608.1687
+    m_Value: 949.6986
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -758,7 +758,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 70a8ffffb4a8ffff52adffff5caffffffccfffff16fbffff8e620000b06200009c7d0000
+      m_ExpandedIDs: 18f1fffff6f9ffff0263000018630000f0670000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1095,6 +1095,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+    - Assets/Resources/images
     - Assets/scripts/mainmenu scripts
     m_Globs: []
     m_OriginalText: 
@@ -1103,6 +1104,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+  - Assets/Resources/images
   - Assets/scripts/mainmenu scripts
   m_LastFoldersGridSize: 64
   m_LastProjectPath: H:\Constantine\Work\gamedev\unity\wordClone\WordleCrackdown\WordleCrackdown
@@ -1110,9 +1112,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 71}
-    m_SelectedIDs: fe7d0000
-    m_LastClickedID: 32254
-    m_ExpandedIDs: 000000008e640000f27d000000ca9a3b
+    m_SelectedIDs: a86a0000
+    m_LastClickedID: 27304
+    m_ExpandedIDs: 0000000002650000186500001c65000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1140,7 +1142,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008e640000
+    m_ExpandedIDs: 0000000002650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1168,7 +1170,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000000000000
+    m_ExpandedInstanceIDs: c623000000000000ae6a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
