@@ -6,10 +6,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Game() {
     const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-        loaderUrl: "../../buildUnity/Builds WorldeCrackdown.loader.js",
-        dataUrl: "../../buildUnity/Builds WorldeCrackdown.data",
-        frameworkUrl: "../../buildUnity/Builds WorldeCrackdown.framework.js",
-        codeUrl: "../../buildUnity/Builds WorldeCrackdown.wasm",
+        loaderUrl: "../../public/buildUnity/Builds WorldeCrackdown.loader.js",
+        dataUrl: "../../public/buildUnity/Builds WorldeCrackdown.data",
+        frameworkUrl: "../../public/buildUnity/Builds WorldeCrackdown.framework.js",
+        codeUrl: "../../public/buildUnity/Builds WorldeCrackdown.wasm",
     });
 
     return (
