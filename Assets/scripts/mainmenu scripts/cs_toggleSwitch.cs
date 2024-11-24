@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //referenced Christina Creates Games Youtube video: Creating a Toggle Switch System in Unity step by step (toggle button): https://www.youtube.com/watch?v=E9AWlbPGi_4
+//ChristinaCreatesGames git repo: https://github.com/Maraakis/ChristinaCreatesGames/blob/main/Toggle%20Switch%20System/ToggleSwitch.cs
 public class cs_toggleSwitch : MonoBehaviour, IPointerClickHandler
 {
    [Header("Slider Configuration")]

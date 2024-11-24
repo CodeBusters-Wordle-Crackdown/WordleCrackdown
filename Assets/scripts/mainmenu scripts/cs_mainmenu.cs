@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class cs_mainmenu : MonoBehaviour
 {
-    public int wordLength = 5;
-    public int attempts = 6;
-    public bool timer = false;
-    public bool infinite = false;
+    [Header("Main Menu Config")]
+    [SerializeField] public int wordLength = 5;
+    [SerializeField] public int attempts = 6;
+    [SerializeField] public bool timer = false;
+    [SerializeField] public bool infinite = false;
+    [SerializeField] public bool isCustomMode = false;
+
+    
 
     private void SaveAndLoadScene()
     {
@@ -16,77 +20,132 @@ public class cs_mainmenu : MonoBehaviour
         SceneManager.LoadScene("WordleGameScene");
     }
 
+    public void setTimerBool (bool toggleVal)
+    {
+        timer = toggleVal;
+        //Debug.Log(message: "Timer is set to: "+toggleVal, context:this);
+        printGameCurrentConfig();
+    }
+
+    public void setInfiniteBool (bool toggleVal)
+    {
+        infinite = toggleVal;
+        //Debug.Log(message: "Infite is set to: "+toggleVal, context:this);
+        printGameCurrentConfig();
+    }
+
+    public void setWordLength (int value)
+    {
+        wordLength = value;
+        printGameCurrentConfig();
+    }
+
+    public void setNumberOfAttempts (int value)
+    {
+        attempts = value;
+        printGameCurrentConfig();
+    }
+
+
+
     public void PlayGame()
     {  
-        SetGameMode(5, 6, false, false);
-    
+         
+        //SetGameMode(wordLength, attempts, timer, infinite);
+        
+        Debug.Log(message: "loading game scene...", context: this);
+        printGameCurrentConfig();
         SaveAndLoadScene();
     }
 
     public void playClassic()
     {
-        SetGameMode(5, 6, false, false);
-        SaveAndLoadScene();
+        wordLength = 5;
+        attempts = 6;
+        PlayGame();
+       
     }
 
     public void playArcade()
     {
-        SetGameMode(5, 6, false, false);
-        SaveAndLoadScene();
+        wordLength = 5;
+        attempts = 6;
+        PlayGame();
+       
     }
 
     public void playTimed()
     {
-        SetGameMode(5, 6, true, false);
-        SaveAndLoadScene();
+        wordLength = 5;
+        attempts = 6;
+        PlayGame();
+        
     }
 
     public void playInfinite()
     {
-        SetGameMode(5, 6, true, true);
-        SaveAndLoadScene();
+        wordLength = 4;
+        attempts = 6;
+        infinite = true;
+        PlayGame();
     }
 
     public void playEasy()
     {
-        SetGameMode(4, 6, false, false);
-        SaveAndLoadScene();
+        wordLength = 4;
+        attempts = 6;
+        PlayGame();
     }
 
     public void playNormal()
     {
-        SetGameMode(5, 6, true, true);
-        SaveAndLoadScene();
+        wordLength = 5;
+        attempts = 6;
+        PlayGame();
     }
 
     public void playChallenging()
     {
-        SetGameMode(6, 6, true, true);
-        SaveAndLoadScene();
+        wordLength = 6;
+        attempts = 6;
+        PlayGame();
     }
 
      public void playTimer()
     {
-        SetGameMode(5, 5, true, false);
-        SaveAndLoadScene();
+        timer=true;
+        PlayGame();
     }
 
     public void playHard()
     {
-        SetGameMode(7, 4, true, true);
-        SaveAndLoadScene();
+        wordLength = 7;
+        attempts = 6;
+        PlayGame();
     }
 
     private void SetGameMode(int wordLen, int attemptCount, bool timerEnabled, bool infiniteMode)
     {
         wordLength = wordLen;
+        Debug.Log(message: "SetGameMode: Initializing wordlength to " + wordLength, context: this);
         attempts = attemptCount;
+        Debug.Log(message: "SetGameMode: Initializing attempts to " + attempts, context: this);
         timer = timerEnabled;
+        Debug.Log(message: "SetGameMode: Initializing timer to " + timer, context: this);
         infinite = infiniteMode;
+        Debug.Log(message: "SetGameMode: Initializing inifite to " + infinite, context: this);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void printGameCurrentConfig()
+    {
+        Debug.Log(message: "current game config:  wordlength to " + wordLength, context: this);
+        Debug.Log(message: "current game config:  attempts to " + attempts, context: this);
+        Debug.Log(message: "current game config:  timer to " + timer, context: this);
+        Debug.Log(message: "current game config:  infinite to " + infinite, context: this);
     }
 }
