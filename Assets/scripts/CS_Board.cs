@@ -502,7 +502,7 @@ public class Board : MonoBehaviour
             CS_Achievement.UnlockAchievement("Clutch");
 
         // One More Try
-        if (rowIndex == row_count)
+        if (rowIndex == row_count - 1)
             CS_Achievement.UnlockAchievement("One More Try");
     }
 
