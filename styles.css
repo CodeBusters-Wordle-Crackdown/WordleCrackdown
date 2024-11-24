@@ -1,0 +1,108 @@
+/* Modal background */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: absolute; /* For dragging */
+    text-align: center;
+    cursor: grab;
+}
+
+.modal-content:active {
+    cursor: grabbing;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Login form styles */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    width: 60%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.login-form button:hover {
+    background-color: #45a049;
+}
+
+/* Sign Up button */
+.sign-up-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sign-up-btn:hover {
+    background-color: #1e87e5;
+}
+
+/* Toggle between Login and Sign Up */
+.toggle-btn {
+    background-color: transparent;
+    color: #2196F3;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+/* Error message */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Success message */
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+}
