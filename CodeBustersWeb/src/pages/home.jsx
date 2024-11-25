@@ -13,6 +13,7 @@ function Home() {
                 <div className='content' id='Layer2'>
                     <h1>Ready to Challenge Your Brain?</h1> <br />
                     <p>WordleCrackDown is the wordle that will challenge you a couple more additional ways!
+                        <br />Are you ready to embrace the challenge?
                     </p>
                 </div>
                 <div className='ImgContent'> <img className='DemoImg' src={WCD} alt="Wordle Crackdown Game"></img></div>

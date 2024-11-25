@@ -16,7 +16,7 @@ function About() {
         <div id="AbContainer">
             <Header />
             <div className='WordleDescription'>
-                <h1>About WordleCrackdown</h1>
+                <h1>About Wordle Crackdown</h1>
                 <br></br>
                 <p>During fall 2024, students were tasked to create their own software project to develop their programming skills. That's the time were this project was born,
                     with the objective to create a version of wordle that have more objectives and challenges than the standard 5 word game.
@@ -31,9 +31,10 @@ function About() {
                     <h3>Brian Cuevas Fuentes | Front End Developer </h3>
                 </div>
                 <div className='AbFrame description'>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
-                        et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
-                        diam.
+                    <p> International student, pursing a career on computer science with an aim on robotics,
+                        network engineering and/or software developer. related hobbies include FDM 3D printing,
+                        DIY electronics, competitive gaming, and being a student leader.
+
                     </p>
                 </div>
                 <div className='AbFrame socials'>
@@ -51,9 +52,10 @@ function About() {
                     <h3>Clint Scholtisek | Game Developer </h3>
                 </div>
                 <div className='AbFrameL descriptionL'>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
-                        et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
-                        diam.
+                    <p> My name is Clint and I like coding, game development,
+                        microcontrollers/arduino, 3D printing, DIY projects,
+                        playing piano and guitar, drawing, photography, old cars,
+                        and video games :)
                     </p>
                 </div>
                 <div className='AbFrameL socialsL'>
@@ -70,13 +72,11 @@ function About() {
                     <h3>Constantine Hinds | Game Developer </h3>
                 </div>
                 <div className='AbFrame description'>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
-                        et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
-                        diam.
+                    <p> US Force Veteran, pursing a career in computer science with an aim on game development in Unreal Engineer.
                     </p>
                 </div>
                 <div className='AbFrame socials'>
-                    <a href="https://cehinds.github.io"><img className='Simg' src={Ghub} alt="A cat logo from Github" /></a>
+                    <a href="https://github.com/cehinds"><img className='Simg' src={Ghub} alt="A cat logo from Github" /></a>
                     <a href="https://linkedin.com/in/constantine-hinds-1a977a2b4"><img className='Simg' src={LIn} alt="I and N letters" /></a>
                 </div>
             </div>
@@ -89,15 +89,13 @@ function About() {
                     <h3>Gwen | Back End Developer </h3>
                 </div>
                 <div className='AbFrame descriptionL'>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
-                        et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
-                        diam.
+                    <p> Computer science student leveraging a robust background in technical
+                        program management and electrical project supervision.
                     </p>
                 </div>
                 <div className='AbFrame socialsL'>
                     <a href="https://github.com/girlReWired"><img className='Simg' src={Ghub} alt="A cat logo from Github" /></a>
-                    <a href="https://www.linkedin.com/in/brian-cuevas-fuentes-0ab43620a/"><img className='Simg' src={LIn} alt="I and N letters" /></a>
-                    <a href="https://www.instagram.com/arthurgameryt1/"><img className='Simg' src={Inst} alt="A seawolf head logo" /></a>
+                    <a href="https://www.linkedin.com/in/gwendolyn-beecher-b88619111"><img className='Simg' src={LIn} alt="I and N letters" /></a>
                 </div>
             </div>
             {/*Nicassio's Container*/}
@@ -109,9 +107,9 @@ function About() {
                     <h3>Nicassio Westlund | Back End Developer </h3>
                 </div>
                 <div className='AbFrame description'>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac gravida nunc,
-                        et blandit ligula. Etiam turpis massa, pharetra imperdiet ultrices a, aliquam et
-                        diam.
+                    <p> Air Force veteran who enjoys spending most time off with wife and daughter.
+                        Also enjoys reading books, playing video games, snowboarding, camping,
+                        flying planes, and riding motorcycles.
                     </p>
                 </div>
                 <div className='AbFrame socials'>

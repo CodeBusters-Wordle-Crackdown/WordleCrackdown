@@ -47,13 +47,13 @@ function Header() {
 
     if (currentTime >= 6 && currentTime < 12) {
         greeting = `Welcome, morning ${username}!`;
-        customStyle.color = "lightBlue";
+        customStyle.color = "white";
     } else if (currentTime >= 12 && currentTime < 18) {
         greeting = `Welcome, midtime ${username}!`;
-        customStyle.color = "orange";
+        customStyle.color = "#ffe8b8";
     } else {
         greeting = `Welcome, night owl ${username}!`;
-        customStyle.color = "purple";
+        customStyle.color = "#eebfff";
     }
 
     return (

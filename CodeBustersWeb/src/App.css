@@ -337,11 +337,65 @@ li a:hover {
   align-items: end;
 }
 
+/*-----------------------------------Game Page Styling-----------------------------------*/
+
+#GameBox {
+  background-color: #242424;
+}
+
+.Gamegrid {
+  background-color: #242424;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.25fr 0.25fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#GameMTitle {
+  grid-column: span 4;
+  display: flex;
+  justify-content: center;
+
+}
+
+.ModeTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.GameMDesc {
+  grid-column: span 4;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.GameModeBox {
+  grid-column: span 2;
+}
+
+.GameCapture {
+  width: 350px;
+  height: 200px;
+  align-items: center;
+}
+
+#smallCapture {
+  width: 200px;
+  height: 85px;
+  align-items: center;
+}
+
 
 /*-----------------------------------Footer Styling-----------------------------------*/
 
 .footerContainer {
-  background-color: #787c7f;
+  background-color: #3f6451;
   padding-top: 40px;
   padding-left: 60px;
   padding-right: 60px;
@@ -363,6 +417,11 @@ footer {
   bottom: 0;
   width: 100%;
   height: 2.5rem;
+}
+
+.FLink {
+  text-decoration: none;
+  color: #fffefe;
 }
 
 /*-----------------------------------Login Styling-----------------------------------*/
