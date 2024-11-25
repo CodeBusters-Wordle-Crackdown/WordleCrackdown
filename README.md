@@ -1,7 +1,9 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
 
-https://codebusters-wordle-crackdown.github.io/UnityWordle/
+desktop: https://word-buster-99508.firebaseapp.com/#/
+mobile: https://codebusters-wordle-crackdown.github.io/UnityWordle/ 
+
 
 
 *Unity version 2022.3.45f1*
