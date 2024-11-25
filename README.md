@@ -1,15 +1,12 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
 
-
-[https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html](https://cehinds.github.io/wordcrackdownTest/)
-
-https://codebusters-wordle-crackdown.github.io/WordleCrackdown/
+https://codebusters-wordle-crackdown.github.io/UnityWordle/
 
 
 *Unity version 2022.3.45f1*
 
-[https://cehinds.github.io/CSCE401-wordCrackdown-cehinds/index.html](https://cehinds.github.io/wordcrackdownTest/)
+
 
 
 
