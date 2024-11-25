@@ -47,8 +47,8 @@ function Game() {
                     </p>
                 </div>
                 <div className='GameModeBox'>
-                    <h3 className='ModeTitle'>Classic</h3>
-                    <img className='GameCapture' src={M1}></img> <br />
+                    <h2 className='ModeTitle'>Classic</h2>
+                    <img className='GameCapture' src={M1}></img>
                     <p>
                         This is your typical Wordle approach where you will guess a 5 letter word.
                         If any of the squares is yellow it means that the letter is in the word but
@@ -57,7 +57,7 @@ function Game() {
                     </p>
                 </div>
                 <div className='GameModeBox'>
-                    <h3 className='ModeTitle'>Easy</h3>
+                    <h2 className='ModeTitle'>Easy</h2>
                     <img className='GameCapture' src={M2}></img>
                     <p>
                         Just like the classic mode, but instead of 5 letter words you have 4 letter words
@@ -66,7 +66,7 @@ function Game() {
                 </div>
 
                 <div className='GameModeBox'>
-                    <h3 className='ModeTitle'>Challenging</h3>
+                    <h2 className='ModeTitle'>Challenging</h2>
                     <img className='GameCapture' src={M3}></img>
                     <p>
                         Just like the classic mode, but instead of 5 letter words you have 6 letter words
@@ -75,15 +75,15 @@ function Game() {
                 </div>
 
                 <div className='GameModeBox'>
-                    <h3 className='ModeTitle'>Hard</h3> <br />
-                    <img className='GameCapture' src={M4}></img> <br />
+                    <h2 className='ModeTitle'>Hard</h2>
+                    <img className='GameCapture' src={M4}></img>
                     <p>
                         Just like the classic mode, but instead of 5 letter words you have 7 letter words
                         and a simple index was used to make things easier for the player to win.
                     </p>
                 </div>
-                <div className='GameModeBox'>
-                    <h3 className='ModeTitle'>Toggles</h3>
+                <div className='GameModeBoxEnd'>
+                    <h2 className='ModeTitle'>Toggles</h2>
                     <img id='smallCapture' src={Toggles}></img>
                     <p>
                         There are two toggles, the first one is for time. Where it will allow a player to guess as

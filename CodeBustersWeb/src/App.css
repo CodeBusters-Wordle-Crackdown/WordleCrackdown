@@ -346,7 +346,6 @@ li a:hover {
 .Gamegrid {
   background-color: #242424;
   margin-top: 50px;
-  margin-bottom: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 0.25fr 0.25fr 1fr 1fr 1fr;
@@ -359,12 +358,6 @@ li a:hover {
   grid-column: span 4;
   display: flex;
   justify-content: center;
-
-}
-
-.ModeTitle {
-  display: flex;
-  justify-content: center;
 }
 
 .GameMDesc {
@@ -372,23 +365,39 @@ li a:hover {
   display: flex;
   justify-content: center;
   text-align: center;
-
 }
 
 .GameModeBox {
   grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.GameModeBoxEnd {
+  grid-column-start: 2;
+  grid-column-end: -2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
 }
 
 .GameCapture {
   width: 350px;
   height: 200px;
-  align-items: center;
+  display: block;
+  margin: 0 auto;
 }
 
 #smallCapture {
   width: 200px;
   height: 85px;
-  align-items: center;
+  display: block;
+  margin: 0 auto;
 }
 
 
