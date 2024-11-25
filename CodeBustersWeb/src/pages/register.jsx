@@ -1,36 +1,26 @@
-import React, { useState } from "react";
-import { Navigate, Link } from "react-router-dom";
-import { doSignInEmailAndPassword, doSignInWithGithub } from "../scripts/auth";
-import { useAuth } from "./authContext";
-import Ghub from "../images/GhubLogo.png";
+import React, { useState } from 'react'
+import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { useAuth } from './authContext'
+import { doCreateUserWithEmailAndPassword } from '../scripts/auth'
 import Header from '../components/Header';
-import Footer from '../components/footer';
-import '../App.css';
 
-const Login = () => {
+const Register = () => {
 
-    const { userLoggedIn } = useAuth();
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isSigningIn, setIsSigningIn] = useState(false)
+    const [confirmPassword, setconfirmPassword] = useState('')
+    const [isRegistering, setIsRegistering] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+
+    const { userLoggedIn } = useAuth()
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        if (!isSigningIn) {
-            setIsSigningIn(true)
-            await doSignInEmailAndPassword(email, password)
-        }
-    }
-
-    const onGithubSignIn = (e) => {
-        e.preventDefault()
-        if (!isSigningIn) {
-            setIsSigningIn(true)
-            doSignInWithGithub().catch(err => {
-                setIsSigningIn(false)
-            })
+        if (!isRegistering) {
+            setIsRegistering(true)
+            await doCreateUserWithEmailAndPassword(email, password)
         }
     }
 
@@ -41,7 +31,7 @@ const Login = () => {
             <div className="FormContainer">
                 <div className="LogInBox">
                     <div className="LoginTitle">
-                        <h3> Welcome Back </h3>
+                        <h3> Create a new account </h3>
                     </div>
                     <form onSubmit={onSubmit}
                         className="Sform">
@@ -62,10 +52,23 @@ const Login = () => {
                                 Password
                             </label> <br />
                             <input className="Finput"
+                                disabled={isRegistering}
                                 type="password"
                                 autoComplete="current-password"
                                 required
                                 value={password} onChange={(e) => { setPassword(e.target.value) }}
+                            />
+                        </div> <br />
+                        <div>
+                            <label className="FLabel">
+                                Confirm Password
+                            </label> <br />
+                            <input className="Finput"
+                                disabled={isRegistering}
+                                type="password"
+                                autoComplete="off"
+                                required
+                                value={confirmPassword} onChange={(e) => { setconfirmPassword(e.target.value) }}
                             />
                         </div> <br />
 
@@ -75,30 +78,21 @@ const Login = () => {
 
                         <button
                             type="submit"
-                            disabled={isSigningIn}
-                            className={`FButtonS1 ${isSigningIn ? 'FSinButton2' : 'FSinButton'}`}
+                            disabled={isRegistering}
+                            className={`FButtonS1 ${isRegistering ? 'FSinButton2' : 'FSinButton'}`}
                         >
-                            {isSigningIn ? 'Signing In...' : 'Sign In'}
+                            {isRegistering ? 'Signing Up...' : 'Sign Up'}
                         </button>
                     </form>
-                    <p className="Fsubtext">Don't have an account? <Link to={'/register'} className="Flink"> Sign up</Link></p>
                     <div className='FDivider'>
                         <div className='FLine'></div><div className='FLabel'>OR</div><div className='FLine'></div>
                     </div>
-                    <button
-                        disabled={isSigningIn}
-                        onClick={(e) => { onGithubSignIn(e) }}
-                        className={`FButtonS1  ${isSigningIn ? 'FGitButton2' : 'FGitButton'}`}>
-                        <img className="Fimg" src={Ghub} alt="A cat logo"></img>
-                        {isSigningIn ? 'Signing In...' : 'Continue with GitHub'}
-                    </button>
+                    <p className="Fsubtext">Already have an account? <Link to={'/login'} className="Flink"> Sign in</Link></p>
+
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Login;
-
-
-
+export default Register

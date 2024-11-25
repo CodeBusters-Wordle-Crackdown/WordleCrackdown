@@ -367,112 +367,154 @@ footer {
 
 /*-----------------------------------Login Styling-----------------------------------*/
 
-/* Modal background */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
+.FormContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 25px;
+}
+
+.LogInBox {
+  width: 350px;
+  height: 450px;
+  padding: 25px;
+  border: 1px solid;
+  box-shadow: 1px 8px 8px 1px #888888;
+
+}
+
+.LoginTitle {
+  color: black;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: large;
+}
+
+.FLabel {
+  color: black;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+
+}
+
+.Finput {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: rgb(219, 240, 216);
+  color: #000;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.Fimg {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.FError {
+  color: rgb(202, 43, 43);
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.FSinButton2 {
+  background-color: rgb(248, 247, 193);
+  border: 1px solid #ccc;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(202, 202, 202);
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.FSinButton {
+  background-color: rgb(215, 211, 6);
+  border: 1px solid #ccc;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.Fsubtext {
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  color: #000;
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
 }
 
-/* Modal content */
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  /* For dragging */
-  text-align: center;
-  cursor: grab;
+.Flink {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
 }
 
-.modal-content:active {
-  cursor: grabbing;
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Login form styles */
-.login-form input[type="email"],
-.login-form input[type="password"] {
-  width: 95%;
-  padding: 10px;
-  margin: 8px 0;
+.FGitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-form button {
-  width: 60%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
   font-size: 16px;
-  margin-bottom: 10px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  height: 60px;
+  background-color: rgb(227, 227, 227);
 }
 
-.login-form button:hover {
-  background-color: #45a049;
-}
-
-/* Sign Up button */
-.sign-up-btn {
-  background-color: #2196F3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
+.FGitButton2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #ccc;
+  color: #828282;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
   font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  height: 60px;
+  background-color: rgb(244, 244, 244);
 }
 
-.sign-up-btn:hover {
-  background-color: #1e87e5;
+.FDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
 }
 
-/* Toggle between Login and Sign Up */
-.toggle-btn {
-  background-color: transparent;
-  color: #2196F3;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 14px;
-}
-
-/* Error message */
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-/* Success message */
-.success-message {
-  color: green;
-  font-size: 14px;
-  margin-top: 10px;
+.FLine {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 10px;
 }
