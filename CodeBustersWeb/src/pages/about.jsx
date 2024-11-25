@@ -18,8 +18,9 @@ function About() {
             <div className='WordleDescription'>
                 <h1>About Wordle Crackdown</h1>
                 <br></br>
-                <p>During fall 2024, students were tasked to create their own software project to develop their programming skills. That's the time were this project was born,
-                    with the objective to create a version of wordle that have more objectives and challenges than the standard 5 word game.
+                <p>During fall 2024, students were tasked to create their own software project to develop their programming
+                    skills. That's the time were this project was born, with the objective to create a version of
+                    wordle that have more objectives and challenges than the standard 5 word game.
                 </p>
             </div>
             {/*Brian's Container*/}

@@ -21,21 +21,18 @@ function News() {
                         <h2>Wordlecrackdown has been published!</h2>
                     </div>
                     <div className='PostDescription'>
-                        <p>Aliquam sed feugiat eros, nec elementum quam.
-                            Donec vitae leo dignissim, efficitur mi vitae, placerat sapien. Quisque maximus,
-                            est quis lacinia dapibus, sapien est consequat justo, ut faucibus lectus tellus eu
-                            tortor. Suspendisse maximus justo dolor, id finibus turpis fringilla vehicula.
-                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                            curae; Phasellus lorem ipsum, aliquam vitae viverra sagittis, eleifend id augue.</p>
+                        <p>Wordle Crackdown has been released and is here to redefine your word-guessing game nights!
+                            Dive into exciting new modes that push your skills to the limit. Race against time in
+                            Time Mode, tackle tricky twists with the different modes, or test your endurance in
+                            Infinite Mode—where each solved puzzle gets tougher than the last. With vibrant visuals
+                            and addictive gameplay, Wordle Crackdown promises endless fun for both casual players
+                            and word game enthusiasts. Are you ready to rise to the challenge?</p>
                     </div>
                     <div className="PostDate">
-                        <p>Posted on: dd/mm/yyyy</p>
+                        <p>Posted on: 11/25/2024</p>
                     </div>
-
-
                 </div>
             </div>
-
             <Footer />
         </div>
 
