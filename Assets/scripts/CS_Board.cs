@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+//using UnityEditor.VersionControl;
+
 //using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -137,6 +139,7 @@ public class Board : MonoBehaviour
     void Update()
     {
         currentRow = rows[rowIndex];
+
         // check for backspace input
         if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -167,9 +170,22 @@ public class Board : MonoBehaviour
 
     public void InputChar(string input)
     {
-        // Receive the first character of input as a char
-        currentRow.tiles[columnIndex].SetLetter(input.ToLower()[0]);
-        columnIndex++;
+        //added try catch exception blocks for outof index errors //-cehinds 24 Nov 24
+        try
+        {// Receive the first character of input as a char
+            if (columnIndex < word_size)
+            {
+                Debug.Log(message: "Current word size is: "+word_size+". Current column index is: " + columnIndex); //debug statement to track column index
+                currentRow.tiles[columnIndex].SetLetter(input.ToLower()[0]);
+                columnIndex++;
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(message: e +": Out of index Exception: current column index is "+columnIndex+". Max word size is "+ word_size, context: this);
+            
+
+        }
 
         // Type Sound effect
         audioSource.clip = typeSFX[UnityEngine.Random.Range(0, typeSFX.Length)];

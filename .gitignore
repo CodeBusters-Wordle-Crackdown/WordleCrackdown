@@ -19,7 +19,7 @@
 *.VC.db.meta
 node_modules/
 
-build/
+
 dist/
 
 # Firebase
