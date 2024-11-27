@@ -27,8 +27,10 @@ public class Board : MonoBehaviour
 
     private string[] validWords;
     private string[] solutionWords;
-    [SerializeField] // For debugging purposes
-    private string word;
+
+    [Header("Config")] 
+    [SerializeField] private float delayTime =1.5f; // For debugging purposes
+    [SerializeField] private string word;
 
     public int row_count;
     public int word_size;
@@ -372,9 +374,7 @@ public class Board : MonoBehaviour
             achievementCheck();
             if (CS_Timer.infiniteMode)
             {
-                CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
-                ClearBoard();
-                SetRandomWord();
+                Invoke("ResetGameBoard",delayTime);
                 return;
             }
             else
@@ -479,6 +479,15 @@ public class Board : MonoBehaviour
         }
     }
 
+    //converted the gameboard reset to a separate function so that I can add a delay with the "invoke" keyword--cehinds 27 Nov 24
+    private void ResetGameBoard()
+    {
+        CS_Timer.AddTime(CS_Timer.correctGuessTimeReward);
+        ClearBoard(); //added delay in infinite mode for correct words--cehinds 27 Nov 24
+        SetRandomWord();
+
+    }
+
     //added function to load game mode config. This sets the wordlength, the number of attempts, and changes CS_timer.inifiteMode and timerEnabled variables-cehinds 10 Nov 24
     public void loadGameMode()
     {
@@ -533,4 +542,6 @@ public class Board : MonoBehaviour
         }
         return true;
     }
+
+
 }
