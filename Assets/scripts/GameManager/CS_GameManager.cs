@@ -11,6 +11,9 @@ public class cs_gamemanager
     public bool timer = false;
     public bool infinite = false;
 
+    [Header("Game Statistics")]
+    [SerializeField] public int highScore = 0;
+
     public cs_gamemanager (cs_mainmenu mode)
     {
         wordLength = mode.wordLength;
@@ -19,6 +22,17 @@ public class cs_gamemanager
         infinite = mode.infinite;
 
     }
+
+    public void updateHighScore(int score)
+    {
+        if (score>highScore)
+            {
+                highScore = score;
+                Debug.Log("High Score: "+highScore);
+            }
+    }
+
+
     
 
     

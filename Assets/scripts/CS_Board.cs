@@ -31,6 +31,7 @@ public class Board : MonoBehaviour
     [Header("Config")] 
     [SerializeField] private float delayTime =1.5f; // For debugging purposes
     [SerializeField] private string word;
+    [SerializeField] public  cs_gamemanager GM;
 
     public int row_count;
     public int word_size;
@@ -67,7 +68,7 @@ public class Board : MonoBehaviour
 
     [Header("Score")]
     public TextMeshProUGUI scoreText;
-    private int score;
+    [SerializeField] private int score;
     [SerializeField]
     private int correctLetterScore;
     [SerializeField]
@@ -363,7 +364,7 @@ public class Board : MonoBehaviour
         if(correctLettersGuessedInGuess >= 3)
         {
             CS_Achievement.UnlockAchievement("Three Birds One Stone");
-            CS_SaveSystem.saveGameData(this);
+            updateGameManager();
         }
         correctLettersGuessedInGuess = 0;
 
@@ -375,13 +376,13 @@ public class Board : MonoBehaviour
             achievementCheck();
             if (CS_Timer.infiniteMode)
             {
-                CS_SaveSystem.saveGameData(this);
+                updateGameManager();
                 Invoke("ResetGameBoard",delayTime);
                 return;
             }
             else
             {
-                CS_SaveSystem.saveGameData(this);
+                updateGameManager();
                 GameOver();
             }
         }
@@ -392,6 +393,13 @@ public class Board : MonoBehaviour
         // exhausted all guesses and failed
         if (rowIndex >= rows.Length)
             GameOver();
+    }
+
+    private void updateGameManager()
+    {
+        CS_SaveSystem.saveGameData(this);
+        GM.updateHighScore(score);
+
     }
 
     private bool IsValidWord(string guess)
@@ -435,7 +443,7 @@ public class Board : MonoBehaviour
         enabled = false;
         
         //added save game data
-        CS_SaveSystem.saveGameData(this);
+        updateGameManager();
     }
 
     public void NewGame()
