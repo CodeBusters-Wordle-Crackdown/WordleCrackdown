@@ -363,6 +363,7 @@ public class Board : MonoBehaviour
         if(correctLettersGuessedInGuess >= 3)
         {
             CS_Achievement.UnlockAchievement("Three Birds One Stone");
+            CS_SaveSystem.saveGameData(this);
         }
         correctLettersGuessedInGuess = 0;
 
@@ -374,11 +375,13 @@ public class Board : MonoBehaviour
             achievementCheck();
             if (CS_Timer.infiniteMode)
             {
+                CS_SaveSystem.saveGameData(this);
                 Invoke("ResetGameBoard",delayTime);
                 return;
             }
             else
             {
+                CS_SaveSystem.saveGameData(this);
                 GameOver();
             }
         }
