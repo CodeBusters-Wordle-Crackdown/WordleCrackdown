@@ -14,6 +14,7 @@ public class cs_gamemanager
     [Header("Game Statistics")]
     [SerializeField] public int highScore = 0;
 
+  
     public cs_gamemanager (cs_mainmenu mode)
     {
         wordLength = mode.wordLength;

@@ -9,8 +9,11 @@ public static class CS_SaveSystem
 {
     public static string filePath = Application.persistentDataPath;
     public static string  fileName = "savedData.json";
+    public static string  statsFileName = "stats.json";
     public static cs_playerData loadedData; 
+    public static cs_playerData loadedStats; 
     public static bool isDataLoaded = false; 
+    public static bool isStatsLoaded = false; 
     
     
     public static void saveGameMode(cs_mainmenu mode)
@@ -59,6 +62,19 @@ public static class CS_SaveSystem
         Debug.Log("Saved data path: " + path);
     }
 
+    public static void saveGameStats(cs_gamemanager gm)
+    {
+    BinaryFormatter formatter = new BinaryFormatter();
+    string path = filePath+"/"+statsFileName;
+    FileStream stream = new FileStream(path, FileMode.Create);
+
+    cs_playerData data = new cs_playerData(gm);
+    formatter.Serialize(stream, data);
+    stream.Close();
+    }
+
+  
+
     //loads and deserializes game instance data
     public static cs_playerData loadGameData()
     {
@@ -77,6 +93,27 @@ public static class CS_SaveSystem
         else
         {
             Debug.LogError("GameMode data not found: " + path);
+            return null;
+        }
+    }
+
+    public static cs_playerData loadGameStats()
+    {
+        string path = filePath+statsFileName;
+        if(File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            
+            cs_playerData data = formatter.Deserialize(stream) as cs_playerData; //change the data back inot a readable unity file
+            stream.Close();
+            loadedStats = data;
+            isStatsLoaded = true;
+            return data;
+        }
+        else
+        {
+            Debug.LogError("gameStats data not found: " + path);
             return null;
         }
     }

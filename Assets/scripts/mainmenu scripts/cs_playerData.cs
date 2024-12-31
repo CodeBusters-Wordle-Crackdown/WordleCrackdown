@@ -14,6 +14,7 @@ public class cs_playerData
     public float timeRemaining;
     public int score;
     public int difficulty = 5;  //4 = easy (4 letters), 5 = normal (5 letters), 6 = challenging (6 letters), 7 = hard (7 letters)
+    public int highScore = 0;
 
     public cs_playerData (Board gameStats)
     {
@@ -24,5 +25,11 @@ public class cs_playerData
         timeRemaining = gameStats.CS_Timer.timer;
         score = gameStats.getGameScore();
         difficulty = wordLength;
+    }
+
+    public cs_playerData (cs_gamemanager gameData)
+    {
+        
+        highScore = gameData.highScore;
     }
 }

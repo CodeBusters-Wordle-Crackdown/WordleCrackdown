@@ -12,7 +12,7 @@ public class cs_mainmenu : MonoBehaviour
     [SerializeField] public bool infinite = false;
     [SerializeField] public bool isCustomMode = false;
 
-    
+
 
     private void SaveAndLoadScene()
     {
@@ -148,4 +148,5 @@ public class cs_mainmenu : MonoBehaviour
         Debug.Log(message: "current game config:  timer to " + timer, context: this);
         Debug.Log(message: "current game config:  infinite to " + infinite, context: this);
     }
+
 }
