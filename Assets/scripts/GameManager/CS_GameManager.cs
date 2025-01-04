@@ -24,6 +24,11 @@ public class cs_gamemanager
 
     }
 
+    public cs_gamemanager()
+    {
+        highScore = 0;
+    }
+
     public void updateHighScore(int score)
     {
         if (score>highScore)

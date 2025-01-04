@@ -12,6 +12,8 @@ public class cs_mainmenu : MonoBehaviour
     [SerializeField] public bool infinite = false;
     [SerializeField] public bool isCustomMode = false;
 
+    
+
 
 
     private void SaveAndLoadScene()

@@ -32,4 +32,9 @@ public class cs_playerData
         
         highScore = gameData.highScore;
     }
+
+    public cs_playerData (CS_playerStats gameData)
+    {
+        highScore = gameData.highScore;
+    }
 }
