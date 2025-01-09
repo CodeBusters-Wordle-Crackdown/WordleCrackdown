@@ -14,6 +14,8 @@ public static class CS_SaveSystem
     public static cs_playerData loadedStats; 
     public static bool isDataLoaded = false; 
     public static bool isStatsLoaded = false; 
+
+    
     
     
     public static void saveGameMode(cs_mainmenu mode)
@@ -54,24 +56,21 @@ public static class CS_SaveSystem
         FileStream stream = new FileStream(path, FileMode.Create);
         
         cs_playerData data = new cs_playerData(mode); // Create the saveddata json file
+        saveGameStats(data, mode);
         formatter.Serialize(stream, data); // Serialize the data object, not the MonoBehaviour
         stream.Close();
 
         pushToDB(data); //attempt to push game isntance data to data base
-
         Debug.Log("Saved data path: " + path);
-        Debug.Log("high score saved is " + data.highScore);
+
+        
     }
 
-    public static void saveGameStats(CS_playerStats stats)
+    public static void saveGameStats(cs_playerData playerData, Board boardData)
     {
-    BinaryFormatter formatter = new BinaryFormatter();
-    string path = filePath+"/"+statsFileName;
-    FileStream stream = new FileStream(path, FileMode.Create);
-
-    cs_playerData data = new cs_playerData(stats);
-    formatter.Serialize(stream, data);
-    stream.Close();
+        playerData.highScore = boardData.getGameScore();
+        Debug.Log("high score from board is " + boardData.getGameScore());
+        Debug.Log("high score saved is " + playerData.highScore);
     }
 
   
