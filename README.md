@@ -1,6 +1,6 @@
 # Wordle-Crackdown
 Fierce wordle game play in a fresh approach
-
+![demo](https://github.com/CodeBusters-Wordle-Crackdown/WordleCrackdown/blob/main/wordle.gif)
 Website: https://word-buster-99508.firebaseapp.com/#/
 
 Game: https://codebusters-wordle-crackdown.github.io/UnityWordle/
